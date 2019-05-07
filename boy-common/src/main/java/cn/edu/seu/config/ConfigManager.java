@@ -1,10 +1,12 @@
 package cn.edu.seu.config;
 
+import exception.EmptyException;
+
 import java.util.Set;
 
 public interface ConfigManager {
 
-    <T> T getDefaultValue(String configType);
+    <T> T getDefaultValue(String configType) throws EmptyException;
 
     Set<String> listAllType();
 

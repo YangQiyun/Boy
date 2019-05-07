@@ -1,5 +1,7 @@
 package cn.edu.seu.config;
 
+import exception.EmptyException;
+
 import java.util.HashMap;
 
 public class AbstractConfigurableInstance implements Configure {
@@ -7,14 +9,18 @@ public class AbstractConfigurableInstance implements Configure {
     private GlobalSwitch globalSwitch = new GlobalSwitch();
     private ConfigManager configManager;
 
-    public AbstractConfigurableInstance(){
+    public AbstractConfigurableInstance() {
         setConfigManager(new DefaultConfigManager());
     }
 
     public AbstractConfigurableInstance(ConfigManager configManager) {
         setConfigManager(configManager);
         for (String configType : configManager.listAllType()) {
-            configStorage.putIfAbsent(configType, configManager.getDefaultValue(configType));
+            try {
+                configStorage.putIfAbsent(configType, configManager.getDefaultValue(configType));
+            } catch (EmptyException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -22,15 +28,18 @@ public class AbstractConfigurableInstance implements Configure {
         return this.globalSwitch;
     }
 
-    public <T> T get(String configType) {
+    public <T> T getConfig(String configType) throws Exception {
+        if (null == configStorage.get(configType)) {
+            throw new Exception("the config of " + configType + " is not init!");
+        }
         return (T) configStorage.get(configType);
     }
 
-    public void set(String configType, Object value) {
+    public void setConfig(String configType, Object value) {
         configStorage.put(configType, value);
     }
 
-    public void setConfigManager(ConfigManager configManager){
+    public void setConfigManager(ConfigManager configManager) {
         this.configManager = configManager;
     }
 }

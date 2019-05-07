@@ -15,12 +15,12 @@ public interface Configure {
      * @param <T>
      * @return
      */
-    <T> T get(String configType);
+    <T> T getConfig(String configType) throws Exception;
 
     /**
      * 设置配置的值
      * @param configType
      * @param value
      */
-    void set(String configType, Object value);
+    void setConfig(String configType, Object value);
 }

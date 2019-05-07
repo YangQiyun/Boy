@@ -7,13 +7,13 @@ import java.util.BitSet;
  */
 public class GlobalSwitch implements Switch{
 
-    private static final int CONN_MONITOR_SWITCH = 0;
+    public static final int CONNECT_WARM_SWITCH = 0;
 
     private BitSet setting = new BitSet();
 
-    // todo 通过configManager获取常规的设置
+    // todo 通过configManager获取常规的设置,通过mysql进行刷新
     public GlobalSwitch(){
-
+        setting.set(CONNECT_WARM_SWITCH,true);
     }
 
     public void tureOn(int index) {
