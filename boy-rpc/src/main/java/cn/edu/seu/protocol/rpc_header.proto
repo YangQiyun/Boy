@@ -6,7 +6,7 @@ option java_outer_classname = "RpcHeader";
 
 enum CompressType {
     COMPRESS_NO = 0;
-    COMPRESS_SNAPPY =1;
+    COMPRESS_SNAPPY = 1;
     COMPERESS_GZIP = 2;
 }
 

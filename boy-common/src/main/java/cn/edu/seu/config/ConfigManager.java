@@ -10,5 +10,5 @@ public interface ConfigManager {
 
     Set<String> listAllType();
 
-    <T> void addConfigType(String type,T defaultValue);
+    <T> void addConfigType(String type, T defaultValue);
 }

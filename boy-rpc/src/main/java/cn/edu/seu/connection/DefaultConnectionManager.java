@@ -5,7 +5,6 @@ import cn.edu.seu.config.Configs;
 import cn.edu.seu.config.GlobalSwitch;
 import cn.edu.seu.config.RpcConfigManager;
 import cn.edu.seu.exception.RemotingException;
-import cn.edu.seu.rpc.ConnectionManager;
 import cn.edu.seu.rpc.EndPoint;
 import exception.EmptyException;
 import io.netty.channel.ChannelHandler;

@@ -7,16 +7,7 @@ import java.util.concurrent.FutureTask;
 
 public class RpcClientTest {
 
-    public static void main(String[] args){
-        FutureTask<Integer> futureTask = new FutureTask<>(()->{
-            System.out.println(Thread.currentThread().getId());
-            return 1;
-        });
+    public static void main(String[] args) {
 
-        Executor executor = Executors.newSingleThreadExecutor();
-        ((ExecutorService) executor).submit(futureTask);
-        ((ExecutorService) executor).shutdown();
-
-        System.out.println("current"+Thread.currentThread().getId());
     }
 }

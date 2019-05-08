@@ -10,7 +10,7 @@ public class ConnectionPool {
 
     private String poolKey;
 
-    public ConnectionPool(String poolKey){
+    public ConnectionPool(String poolKey) {
         this.poolKey = poolKey;
     }
 
@@ -33,7 +33,7 @@ public class ConnectionPool {
         conns.add(connection);
     }
 
-    public int getPoolNum(){
+    public int getPoolNum() {
         return conns.size();
     }
 

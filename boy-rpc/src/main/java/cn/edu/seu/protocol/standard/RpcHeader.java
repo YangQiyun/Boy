@@ -4,2456 +4,2635 @@
 package cn.edu.seu.protocol.standard;
 
 public final class RpcHeader {
-  private RpcHeader() {}
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    private RpcHeader() {
+    }
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-  /**
-   * Protobuf enum {@code code.CompressType}
-   */
-  public enum CompressType
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>COMPRESS_NO = 0;</code>
-     */
-    COMPRESS_NO(0),
-    /**
-     * <code>COMPRESS_SNAPPY = 1;</code>
-     */
-    COMPRESS_SNAPPY(1),
-    /**
-     * <code>COMPERESS_GZIP = 2;</code>
-     */
-    COMPERESS_GZIP(2),
-    UNRECOGNIZED(-1),
-    ;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-    /**
-     * <code>COMPRESS_NO = 0;</code>
-     */
-    public static final int COMPRESS_NO_VALUE = 0;
-    /**
-     * <code>COMPRESS_SNAPPY = 1;</code>
-     */
-    public static final int COMPRESS_SNAPPY_VALUE = 1;
-    /**
-     * <code>COMPERESS_GZIP = 2;</code>
-     */
-    public static final int COMPERESS_GZIP_VALUE = 2;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
     }
 
     /**
-     * @deprecated Use {@link #forNumber(int)} instead.
+     * Protobuf enum {@code code.CompressType}
      */
-    @java.lang.Deprecated
-    public static CompressType valueOf(int value) {
-      return forNumber(value);
-    }
+    public enum CompressType
+            implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <code>COMPRESS_NO = 0;</code>
+         */
+        COMPRESS_NO(0),
+        /**
+         * <code>COMPRESS_SNAPPY = 1;</code>
+         */
+        COMPRESS_SNAPPY(1),
+        /**
+         * <code>COMPERESS_GZIP = 2;</code>
+         */
+        COMPERESS_GZIP(2),
+        UNRECOGNIZED(-1),
+        ;
 
-    public static CompressType forNumber(int value) {
-      switch (value) {
-        case 0: return COMPRESS_NO;
-        case 1: return COMPRESS_SNAPPY;
-        case 2: return COMPERESS_GZIP;
-        default: return null;
-      }
-    }
+        /**
+         * <code>COMPRESS_NO = 0;</code>
+         */
+        public static final int COMPRESS_NO_VALUE = 0;
+        /**
+         * <code>COMPRESS_SNAPPY = 1;</code>
+         */
+        public static final int COMPRESS_SNAPPY_VALUE = 1;
+        /**
+         * <code>COMPERESS_GZIP = 2;</code>
+         */
+        public static final int COMPERESS_GZIP_VALUE = 2;
 
-    public static com.google.protobuf.Internal.EnumLiteMap<CompressType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        CompressType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<CompressType>() {
-            public CompressType findValueByNumber(int number) {
-              return CompressType.forNumber(number);
+
+        public final int getNumber() {
+            if (this == UNRECOGNIZED) {
+                throw new java.lang.IllegalArgumentException(
+                        "Can't get the number of an unknown enum value.");
             }
-          };
+            return value;
+        }
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return cn.edu.seu.protocol.standard.RpcHeader.getDescriptor().getEnumTypes().get(0);
-    }
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static CompressType valueOf(int value) {
+            return forNumber(value);
+        }
 
-    private static final CompressType[] VALUES = values();
-
-    public static CompressType valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private CompressType(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:code.CompressType)
-  }
-
-  /**
-   * Protobuf enum {@code code.RespCode}
-   */
-  public enum RespCode
-      implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>RESP_SUCCESS = 0;</code>
-     */
-    RESP_SUCCESS(0),
-    /**
-     * <code>RESP_FAIL = 1;</code>
-     */
-    RESP_FAIL(1),
-    UNRECOGNIZED(-1),
-    ;
-
-    /**
-     * <code>RESP_SUCCESS = 0;</code>
-     */
-    public static final int RESP_SUCCESS_VALUE = 0;
-    /**
-     * <code>RESP_FAIL = 1;</code>
-     */
-    public static final int RESP_FAIL_VALUE = 1;
-
-
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
-
-    /**
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
-    @java.lang.Deprecated
-    public static RespCode valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static RespCode forNumber(int value) {
-      switch (value) {
-        case 0: return RESP_SUCCESS;
-        case 1: return RESP_FAIL;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<RespCode>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        RespCode> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<RespCode>() {
-            public RespCode findValueByNumber(int number) {
-              return RespCode.forNumber(number);
+        public static CompressType forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return COMPRESS_NO;
+                case 1:
+                    return COMPRESS_SNAPPY;
+                case 2:
+                    return COMPERESS_GZIP;
+                default:
+                    return null;
             }
-          };
+        }
 
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        public static com.google.protobuf.Internal.EnumLiteMap<CompressType>
+        internalGetValueMap() {
+            return internalValueMap;
+        }
+
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+                CompressType> internalValueMap =
+                new com.google.protobuf.Internal.EnumLiteMap<CompressType>() {
+                    public CompressType findValueByNumber(int number) {
+                        return CompressType.forNumber(number);
+                    }
+                };
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
+            return getDescriptor().getValues().get(ordinal());
+        }
+
+        public final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
+            return getDescriptor();
+        }
+
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return cn.edu.seu.protocol.standard.RpcHeader.getDescriptor().getEnumTypes().get(1);
+            return cn.edu.seu.protocol.standard.RpcHeader.getDescriptor().getEnumTypes().get(0);
+        }
+
+        private static final CompressType[] VALUES = values();
+
+        public static CompressType valueOf(
+                com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+            if (desc.getType() != getDescriptor()) {
+                throw new java.lang.IllegalArgumentException(
+                        "EnumValueDescriptor is not for this type.");
+            }
+            if (desc.getIndex() == -1) {
+                return UNRECOGNIZED;
+            }
+            return VALUES[desc.getIndex()];
+        }
+
+        private final int value;
+
+        private CompressType(int value) {
+            this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:code.CompressType)
     }
-
-    private static final RespCode[] VALUES = values();
-
-    public static RespCode valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
-      }
-      if (desc.getIndex() == -1) {
-        return UNRECOGNIZED;
-      }
-      return VALUES[desc.getIndex()];
-    }
-
-    private final int value;
-
-    private RespCode(int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:code.RespCode)
-  }
-
-  public interface RequestHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:code.RequestHeader)
-      com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 服务名或接口名
-     * </pre>
-     *
-     * <code>string service_name = 1;</code>
+     * Protobuf enum {@code code.RespCode}
      */
-    java.lang.String getServiceName();
-    /**
-     * <pre>
-     * 服务名或接口名
-     * </pre>
-     *
-     * <code>string service_name = 1;</code>
-     */
-    com.google.protobuf.ByteString
+    public enum RespCode
+            implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <code>RESP_SUCCESS = 0;</code>
+         */
+        RESP_SUCCESS(0),
+        /**
+         * <code>RESP_FAIL = 1;</code>
+         */
+        RESP_FAIL(1),
+        UNRECOGNIZED(-1),
+        ;
+
+        /**
+         * <code>RESP_SUCCESS = 0;</code>
+         */
+        public static final int RESP_SUCCESS_VALUE = 0;
+        /**
+         * <code>RESP_FAIL = 1;</code>
+         */
+        public static final int RESP_FAIL_VALUE = 1;
+
+
+        public final int getNumber() {
+            if (this == UNRECOGNIZED) {
+                throw new java.lang.IllegalArgumentException(
+                        "Can't get the number of an unknown enum value.");
+            }
+            return value;
+        }
+
+        /**
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static RespCode valueOf(int value) {
+            return forNumber(value);
+        }
+
+        public static RespCode forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return RESP_SUCCESS;
+                case 1:
+                    return RESP_FAIL;
+                default:
+                    return null;
+            }
+        }
+
+        public static com.google.protobuf.Internal.EnumLiteMap<RespCode>
+        internalGetValueMap() {
+            return internalValueMap;
+        }
+
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+                RespCode> internalValueMap =
+                new com.google.protobuf.Internal.EnumLiteMap<RespCode>() {
+                    public RespCode findValueByNumber(int number) {
+                        return RespCode.forNumber(number);
+                    }
+                };
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+            return getDescriptor().getValues().get(ordinal());
+        }
+
+        public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+            return getDescriptor();
+        }
+
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+            return cn.edu.seu.protocol.standard.RpcHeader.getDescriptor().getEnumTypes().get(1);
+        }
+
+        private static final RespCode[] VALUES = values();
+
+        public static RespCode valueOf(
+                com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+            if (desc.getType() != getDescriptor()) {
+                throw new java.lang.IllegalArgumentException(
+                        "EnumValueDescriptor is not for this type.");
+            }
+            if (desc.getIndex() == -1) {
+                return UNRECOGNIZED;
+            }
+            return VALUES[desc.getIndex()];
+        }
+
+        private final int value;
+
+        private RespCode(int value) {
+            this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:code.RespCode)
+    }
+
+    public interface RequestHeaderOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:code.RequestHeader)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <pre>
+         * 服务名或接口名
+         * </pre>
+         *
+         * <code>string service_name = 1;</code>
+         */
+        java.lang.String getServiceName();
+
+        /**
+         * <pre>
+         * 服务名或接口名
+         * </pre>
+         *
+         * <code>string service_name = 1;</code>
+         */
+        com.google.protobuf.ByteString
         getServiceNameBytes();
 
-    /**
-     * <pre>
-     * 方法名
-     * </pre>
-     *
-     * <code>string method_name = 2;</code>
-     */
-    java.lang.String getMethodName();
-    /**
-     * <pre>
-     * 方法名
-     * </pre>
-     *
-     * <code>string method_name = 2;</code>
-     */
-    com.google.protobuf.ByteString
+        /**
+         * <pre>
+         * 方法名
+         * </pre>
+         *
+         * <code>string method_name = 2;</code>
+         */
+        java.lang.String getMethodName();
+
+        /**
+         * <pre>
+         * 方法名
+         * </pre>
+         *
+         * <code>string method_name = 2;</code>
+         */
+        com.google.protobuf.ByteString
         getMethodNameBytes();
 
-    /**
-     * <pre>
-     * 请求id
-     * </pre>
-     *
-     * <code>uint64 request_id = 3;</code>
-     */
-    long getRequestId();
+        /**
+         * <pre>
+         * 请求id
+         * </pre>
+         *
+         * <code>uint64 request_id = 3;</code>
+         */
+        long getRequestId();
 
-    /**
-     * <pre>
-     * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-     * </pre>
-     *
-     * <code>.code.CompressType compress_type = 4;</code>
-     */
-    int getCompressTypeValue();
-    /**
-     * <pre>
-     * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-     * </pre>
-     *
-     * <code>.code.CompressType compress_type = 4;</code>
-     */
-    cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType();
+        /**
+         * <pre>
+         * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+         * </pre>
+         *
+         * <code>.code.CompressType compress_type = 4;</code>
+         */
+        int getCompressTypeValue();
 
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-    int getCustomParamCount();
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-    boolean containsCustomParam(
-        java.lang.String key);
-    /**
-     * Use {@link #getCustomParamMap()} instead.
-     */
-    @java.lang.Deprecated
-    java.util.Map<java.lang.String, java.lang.String>
-    getCustomParam();
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-    java.util.Map<java.lang.String, java.lang.String>
-    getCustomParamMap();
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
+        /**
+         * <pre>
+         * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+         * </pre>
+         *
+         * <code>.code.CompressType compress_type = 4;</code>
+         */
+        cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType();
 
-    java.lang.String getCustomParamOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue);
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+        int getCustomParamCount();
 
-    java.lang.String getCustomParamOrThrow(
-        java.lang.String key);
-  }
-  /**
-   * <pre>
-   * 请求Header
-   * </pre>
-   *
-   * Protobuf type {@code code.RequestHeader}
-   */
-  public  static final class RequestHeader extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:code.RequestHeader)
-      RequestHeaderOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RequestHeader.newBuilder() to construct.
-    private RequestHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RequestHeader() {
-      serviceName_ = "";
-      methodName_ = "";
-      requestId_ = 0L;
-      compressType_ = 0;
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+        boolean containsCustomParam(
+                java.lang.String key);
+
+        /**
+         * Use {@link #getCustomParamMap()} instead.
+         */
+        @java.lang.Deprecated
+        java.util.Map<java.lang.String, java.lang.String>
+        getCustomParam();
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+        java.util.Map<java.lang.String, java.lang.String>
+        getCustomParamMap();
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        java.lang.String getCustomParamOrDefault(
+                java.lang.String key,
+                java.lang.String defaultValue);
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        java.lang.String getCustomParamOrThrow(
+                java.lang.String key);
     }
 
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RequestHeader(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              serviceName_ = s;
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              methodName_ = s;
-              break;
-            }
-            case 24: {
-
-              requestId_ = input.readUInt64();
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-
-              compressType_ = rawValue;
-              break;
-            }
-            case 42: {
-              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
-                customParam_ = com.google.protobuf.MapField.newMapField(
-                    CustomParamDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000010;
-              }
-              com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-              customParam__ = input.readMessage(
-                  CustomParamDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
-              customParam_.getMutableMap().put(
-                  customParam__.getKey(), customParam__.getValue());
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
-    }
-
-    @SuppressWarnings({"rawtypes"})
-    @java.lang.Override
-    protected com.google.protobuf.MapField internalGetMapField(
-        int number) {
-      switch (number) {
-        case 5:
-          return internalGetCustomParam();
-        default:
-          throw new RuntimeException(
-              "Invalid map field number: " + number);
-      }
-    }
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.class, cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.Builder.class);
-    }
-
-    private int bitField0_;
-    public static final int SERVICE_NAME_FIELD_NUMBER = 1;
-    private volatile java.lang.Object serviceName_;
-    /**
-     * <pre>
-     * 服务名或接口名
-     * </pre>
-     *
-     * <code>string service_name = 1;</code>
-     */
-    public java.lang.String getServiceName() {
-      java.lang.Object ref = serviceName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        serviceName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 服务名或接口名
-     * </pre>
-     *
-     * <code>string service_name = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getServiceNameBytes() {
-      java.lang.Object ref = serviceName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        serviceName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int METHOD_NAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object methodName_;
-    /**
-     * <pre>
-     * 方法名
-     * </pre>
-     *
-     * <code>string method_name = 2;</code>
-     */
-    public java.lang.String getMethodName() {
-      java.lang.Object ref = methodName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        methodName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 方法名
-     * </pre>
-     *
-     * <code>string method_name = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getMethodNameBytes() {
-      java.lang.Object ref = methodName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        methodName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int REQUEST_ID_FIELD_NUMBER = 3;
-    private long requestId_;
-    /**
-     * <pre>
-     * 请求id
-     * </pre>
-     *
-     * <code>uint64 request_id = 3;</code>
-     */
-    public long getRequestId() {
-      return requestId_;
-    }
-
-    public static final int COMPRESS_TYPE_FIELD_NUMBER = 4;
-    private int compressType_;
-    /**
-     * <pre>
-     * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-     * </pre>
-     *
-     * <code>.code.CompressType compress_type = 4;</code>
-     */
-    public int getCompressTypeValue() {
-      return compressType_;
-    }
-    /**
-     * <pre>
-     * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-     * </pre>
-     *
-     * <code>.code.CompressType compress_type = 4;</code>
-     */
-    public cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType() {
-      @SuppressWarnings("deprecation")
-      cn.edu.seu.protocol.standard.RpcHeader.CompressType result = cn.edu.seu.protocol.standard.RpcHeader.CompressType.valueOf(compressType_);
-      return result == null ? cn.edu.seu.protocol.standard.RpcHeader.CompressType.UNRECOGNIZED : result;
-    }
-
-    public static final int CUSTOM_PARAM_FIELD_NUMBER = 5;
-    private static final class CustomParamDefaultEntryHolder {
-      static final com.google.protobuf.MapEntry<
-          java.lang.String, java.lang.String> defaultEntry =
-              com.google.protobuf.MapEntry
-              .<java.lang.String, java.lang.String>newDefaultInstance(
-                  cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_CustomParamEntry_descriptor, 
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "",
-                  com.google.protobuf.WireFormat.FieldType.STRING,
-                  "");
-    }
-    private com.google.protobuf.MapField<
-        java.lang.String, java.lang.String> customParam_;
-    private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-    internalGetCustomParam() {
-      if (customParam_ == null) {
-        return com.google.protobuf.MapField.emptyMapField(
-            CustomParamDefaultEntryHolder.defaultEntry);
-      }
-      return customParam_;
-    }
-
-    public int getCustomParamCount() {
-      return internalGetCustomParam().getMap().size();
-    }
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-
-    public boolean containsCustomParam(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      return internalGetCustomParam().getMap().containsKey(key);
-    }
-    /**
-     * Use {@link #getCustomParamMap()} instead.
-     */
-    @java.lang.Deprecated
-    public java.util.Map<java.lang.String, java.lang.String> getCustomParam() {
-      return getCustomParamMap();
-    }
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-
-    public java.util.Map<java.lang.String, java.lang.String> getCustomParamMap() {
-      return internalGetCustomParam().getMap();
-    }
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-
-    public java.lang.String getCustomParamOrDefault(
-        java.lang.String key,
-        java.lang.String defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetCustomParam().getMap();
-      return map.containsKey(key) ? map.get(key) : defaultValue;
-    }
-    /**
-     * <pre>
-     * 用户自定义参数
-     * </pre>
-     *
-     * <code>map&lt;string, string&gt; custom_param = 5;</code>
-     */
-
-    public java.lang.String getCustomParamOrThrow(
-        java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
-      java.util.Map<java.lang.String, java.lang.String> map =
-          internalGetCustomParam().getMap();
-      if (!map.containsKey(key)) {
-        throw new java.lang.IllegalArgumentException();
-      }
-      return map.get(key);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (!getServiceNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, serviceName_);
-      }
-      if (!getMethodNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, methodName_);
-      }
-      if (requestId_ != 0L) {
-        output.writeUInt64(3, requestId_);
-      }
-      if (compressType_ != cn.edu.seu.protocol.standard.RpcHeader.CompressType.COMPRESS_NO.getNumber()) {
-        output.writeEnum(4, compressType_);
-      }
-      com.google.protobuf.GeneratedMessageV3
-        .serializeStringMapTo(
-          output,
-          internalGetCustomParam(),
-          CustomParamDefaultEntryHolder.defaultEntry,
-          5);
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (!getServiceNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, serviceName_);
-      }
-      if (!getMethodNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, methodName_);
-      }
-      if (requestId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(3, requestId_);
-      }
-      if (compressType_ != cn.edu.seu.protocol.standard.RpcHeader.CompressType.COMPRESS_NO.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, compressType_);
-      }
-      for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
-           : internalGetCustomParam().getMap().entrySet()) {
-        com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
-        customParam__ = CustomParamDefaultEntryHolder.defaultEntry.newBuilderForType()
-            .setKey(entry.getKey())
-            .setValue(entry.getValue())
-            .build();
-        size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(5, customParam__);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof cn.edu.seu.protocol.standard.RpcHeader.RequestHeader)) {
-        return super.equals(obj);
-      }
-      cn.edu.seu.protocol.standard.RpcHeader.RequestHeader other = (cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) obj;
-
-      boolean result = true;
-      result = result && getServiceName()
-          .equals(other.getServiceName());
-      result = result && getMethodName()
-          .equals(other.getMethodName());
-      result = result && (getRequestId()
-          == other.getRequestId());
-      result = result && compressType_ == other.compressType_;
-      result = result && internalGetCustomParam().equals(
-          other.internalGetCustomParam());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SERVICE_NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getServiceName().hashCode();
-      hash = (37 * hash) + METHOD_NAME_FIELD_NUMBER;
-      hash = (53 * hash) + getMethodName().hashCode();
-      hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRequestId());
-      hash = (37 * hash) + COMPRESS_TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + compressType_;
-      if (!internalGetCustomParam().getMap().isEmpty()) {
-        hash = (37 * hash) + CUSTOM_PARAM_FIELD_NUMBER;
-        hash = (53 * hash) + internalGetCustomParam().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(cn.edu.seu.protocol.standard.RpcHeader.RequestHeader prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * <pre>
      * 请求Header
      * </pre>
-     *
+     * <p>
      * Protobuf type {@code code.RequestHeader}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:code.RequestHeader)
-        cn.edu.seu.protocol.standard.RpcHeader.RequestHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
-      }
+    public static final class RequestHeader extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:code.RequestHeader)
+            RequestHeaderOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMapField(
-          int number) {
-        switch (number) {
-          case 5:
-            return internalGetCustomParam();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+        // Use RequestHeader.newBuilder() to construct.
+        private RequestHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @SuppressWarnings({"rawtypes"})
-      protected com.google.protobuf.MapField internalGetMutableMapField(
-          int number) {
-        switch (number) {
-          case 5:
-            return internalGetMutableCustomParam();
-          default:
-            throw new RuntimeException(
-                "Invalid map field number: " + number);
+
+        private RequestHeader() {
+            serviceName_ = "";
+            methodName_ = "";
+            requestId_ = 0L;
+            compressType_ = 0;
         }
-      }
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.class, cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.Builder.class);
-      }
 
-      // Construct using cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        serviceName_ = "";
 
-        methodName_ = "";
-
-        requestId_ = 0L;
-
-        compressType_ = 0;
-
-        internalGetMutableCustomParam().clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
-      }
-
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstanceForType() {
-        return cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader build() {
-        cn.edu.seu.protocol.standard.RpcHeader.RequestHeader result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader buildPartial() {
-        cn.edu.seu.protocol.standard.RpcHeader.RequestHeader result = new cn.edu.seu.protocol.standard.RpcHeader.RequestHeader(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        result.serviceName_ = serviceName_;
-        result.methodName_ = methodName_;
-        result.requestId_ = requestId_;
-        result.compressType_ = compressType_;
-        result.customParam_ = internalGetCustomParam();
-        result.customParam_.makeImmutable();
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) {
-          return mergeFrom((cn.edu.seu.protocol.standard.RpcHeader.RequestHeader)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(cn.edu.seu.protocol.standard.RpcHeader.RequestHeader other) {
-        if (other == cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.getDefaultInstance()) return this;
-        if (!other.getServiceName().isEmpty()) {
-          serviceName_ = other.serviceName_;
-          onChanged();
-        }
-        if (!other.getMethodName().isEmpty()) {
-          methodName_ = other.methodName_;
-          onChanged();
-        }
-        if (other.getRequestId() != 0L) {
-          setRequestId(other.getRequestId());
-        }
-        if (other.compressType_ != 0) {
-          setCompressTypeValue(other.getCompressTypeValue());
-        }
-        internalGetMutableCustomParam().mergeFrom(
-            other.internalGetCustomParam());
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object serviceName_ = "";
-      /**
-       * <pre>
-       * 服务名或接口名
-       * </pre>
-       *
-       * <code>string service_name = 1;</code>
-       */
-      public java.lang.String getServiceName() {
-        java.lang.Object ref = serviceName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          serviceName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 服务名或接口名
-       * </pre>
-       *
-       * <code>string service_name = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getServiceNameBytes() {
-        java.lang.Object ref = serviceName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          serviceName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 服务名或接口名
-       * </pre>
-       *
-       * <code>string service_name = 1;</code>
-       */
-      public Builder setServiceName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        serviceName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 服务名或接口名
-       * </pre>
-       *
-       * <code>string service_name = 1;</code>
-       */
-      public Builder clearServiceName() {
-        
-        serviceName_ = getDefaultInstance().getServiceName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 服务名或接口名
-       * </pre>
-       *
-       * <code>string service_name = 1;</code>
-       */
-      public Builder setServiceNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        serviceName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object methodName_ = "";
-      /**
-       * <pre>
-       * 方法名
-       * </pre>
-       *
-       * <code>string method_name = 2;</code>
-       */
-      public java.lang.String getMethodName() {
-        java.lang.Object ref = methodName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          methodName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 方法名
-       * </pre>
-       *
-       * <code>string method_name = 2;</code>
-       */
-      public com.google.protobuf.ByteString
-          getMethodNameBytes() {
-        java.lang.Object ref = methodName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          methodName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       * 方法名
-       * </pre>
-       *
-       * <code>string method_name = 2;</code>
-       */
-      public Builder setMethodName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        methodName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 方法名
-       * </pre>
-       *
-       * <code>string method_name = 2;</code>
-       */
-      public Builder clearMethodName() {
-        
-        methodName_ = getDefaultInstance().getMethodName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 方法名
-       * </pre>
-       *
-       * <code>string method_name = 2;</code>
-       */
-      public Builder setMethodNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        methodName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private long requestId_ ;
-      /**
-       * <pre>
-       * 请求id
-       * </pre>
-       *
-       * <code>uint64 request_id = 3;</code>
-       */
-      public long getRequestId() {
-        return requestId_;
-      }
-      /**
-       * <pre>
-       * 请求id
-       * </pre>
-       *
-       * <code>uint64 request_id = 3;</code>
-       */
-      public Builder setRequestId(long value) {
-        
-        requestId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 请求id
-       * </pre>
-       *
-       * <code>uint64 request_id = 3;</code>
-       */
-      public Builder clearRequestId() {
-        
-        requestId_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int compressType_ = 0;
-      /**
-       * <pre>
-       * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-       * </pre>
-       *
-       * <code>.code.CompressType compress_type = 4;</code>
-       */
-      public int getCompressTypeValue() {
-        return compressType_;
-      }
-      /**
-       * <pre>
-       * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-       * </pre>
-       *
-       * <code>.code.CompressType compress_type = 4;</code>
-       */
-      public Builder setCompressTypeValue(int value) {
-        compressType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-       * </pre>
-       *
-       * <code>.code.CompressType compress_type = 4;</code>
-       */
-      public cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType() {
-        @SuppressWarnings("deprecation")
-        cn.edu.seu.protocol.standard.RpcHeader.CompressType result = cn.edu.seu.protocol.standard.RpcHeader.CompressType.valueOf(compressType_);
-        return result == null ? cn.edu.seu.protocol.standard.RpcHeader.CompressType.UNRECOGNIZED : result;
-      }
-      /**
-       * <pre>
-       * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-       * </pre>
-       *
-       * <code>.code.CompressType compress_type = 4;</code>
-       */
-      public Builder setCompressType(cn.edu.seu.protocol.standard.RpcHeader.CompressType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        compressType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
-       * </pre>
-       *
-       * <code>.code.CompressType compress_type = 4;</code>
-       */
-      public Builder clearCompressType() {
-        
-        compressType_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.MapField<
-          java.lang.String, java.lang.String> customParam_;
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetCustomParam() {
-        if (customParam_ == null) {
-          return com.google.protobuf.MapField.emptyMapField(
-              CustomParamDefaultEntryHolder.defaultEntry);
-        }
-        return customParam_;
-      }
-      private com.google.protobuf.MapField<java.lang.String, java.lang.String>
-      internalGetMutableCustomParam() {
-        onChanged();;
-        if (customParam_ == null) {
-          customParam_ = com.google.protobuf.MapField.newMapField(
-              CustomParamDefaultEntryHolder.defaultEntry);
-        }
-        if (!customParam_.isMutable()) {
-          customParam_ = customParam_.copy();
-        }
-        return customParam_;
-      }
-
-      public int getCustomParamCount() {
-        return internalGetCustomParam().getMap().size();
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public boolean containsCustomParam(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        return internalGetCustomParam().getMap().containsKey(key);
-      }
-      /**
-       * Use {@link #getCustomParamMap()} instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String> getCustomParam() {
-        return getCustomParamMap();
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public java.util.Map<java.lang.String, java.lang.String> getCustomParamMap() {
-        return internalGetCustomParam().getMap();
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public java.lang.String getCustomParamOrDefault(
-          java.lang.String key,
-          java.lang.String defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetCustomParam().getMap();
-        return map.containsKey(key) ? map.get(key) : defaultValue;
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public java.lang.String getCustomParamOrThrow(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        java.util.Map<java.lang.String, java.lang.String> map =
-            internalGetCustomParam().getMap();
-        if (!map.containsKey(key)) {
-          throw new java.lang.IllegalArgumentException();
-        }
-        return map.get(key);
-      }
-
-      public Builder clearCustomParam() {
-        internalGetMutableCustomParam().getMutableMap()
-            .clear();
-        return this;
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public Builder removeCustomParam(
-          java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableCustomParam().getMutableMap()
-            .remove(key);
-        return this;
-      }
-      /**
-       * Use alternate mutation accessors instead.
-       */
-      @java.lang.Deprecated
-      public java.util.Map<java.lang.String, java.lang.String>
-      getMutableCustomParam() {
-        return internalGetMutableCustomParam().getMutableMap();
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-      public Builder putCustomParam(
-          java.lang.String key,
-          java.lang.String value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
-        internalGetMutableCustomParam().getMutableMap()
-            .put(key, value);
-        return this;
-      }
-      /**
-       * <pre>
-       * 用户自定义参数
-       * </pre>
-       *
-       * <code>map&lt;string, string&gt; custom_param = 5;</code>
-       */
-
-      public Builder putAllCustomParam(
-          java.util.Map<java.lang.String, java.lang.String> values) {
-        internalGetMutableCustomParam().getMutableMap()
-            .putAll(values);
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:code.RequestHeader)
-    }
-
-    // @@protoc_insertion_point(class_scope:code.RequestHeader)
-    private static final cn.edu.seu.protocol.standard.RpcHeader.RequestHeader DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new cn.edu.seu.protocol.standard.RpcHeader.RequestHeader();
-    }
-
-    public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RequestHeader>
-        PARSER = new com.google.protobuf.AbstractParser<RequestHeader>() {
-      @java.lang.Override
-      public RequestHeader parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RequestHeader(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RequestHeader> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RequestHeader> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ResponseHeaderOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:code.ResponseHeader)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * 请求Id
-     * </pre>
-     *
-     * <code>uint64 request_id = 1;</code>
-     */
-    long getRequestId();
-
-    /**
-     * <pre>
-     * 返回码，0：成功，1：失败
-     * </pre>
-     *
-     * <code>.code.RespCode res_code = 2;</code>
-     */
-    int getResCodeValue();
-    /**
-     * <pre>
-     * 返回码，0：成功，1：失败
-     * </pre>
-     *
-     * <code>.code.RespCode res_code = 2;</code>
-     */
-    cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode();
-
-    /**
-     * <pre>
-     * 返回失败时的错误消息
-     * </pre>
-     *
-     * <code>string res_msg = 3;</code>
-     */
-    java.lang.String getResMsg();
-    /**
-     * <pre>
-     * 返回失败时的错误消息
-     * </pre>
-     *
-     * <code>string res_msg = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getResMsgBytes();
-  }
-  /**
-   * <pre>
-   * 响应Header
-   * </pre>
-   *
-   * Protobuf type {@code code.ResponseHeader}
-   */
-  public  static final class ResponseHeader extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:code.ResponseHeader)
-      ResponseHeaderOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ResponseHeader.newBuilder() to construct.
-    private ResponseHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ResponseHeader() {
-      requestId_ = 0L;
-      resCode_ = 0;
-      resMsg_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ResponseHeader(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              requestId_ = input.readUInt64();
-              break;
+        private RequestHeader(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
             }
-            case 16: {
-              int rawValue = input.readEnum();
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 10: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-              resCode_ = rawValue;
-              break;
-            }
-            case 26: {
-              java.lang.String s = input.readStringRequireUtf8();
+                            serviceName_ = s;
+                            break;
+                        }
+                        case 18: {
+                            java.lang.String s = input.readStringRequireUtf8();
 
-              resMsg_ = s;
-              break;
+                            methodName_ = s;
+                            break;
+                        }
+                        case 24: {
+
+                            requestId_ = input.readUInt64();
+                            break;
+                        }
+                        case 32: {
+                            int rawValue = input.readEnum();
+
+                            compressType_ = rawValue;
+                            break;
+                        }
+                        case 42: {
+                            if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                                customParam_ = com.google.protobuf.MapField.newMapField(
+                                        CustomParamDefaultEntryHolder.defaultEntry);
+                                mutable_bitField0_ |= 0x00000010;
+                            }
+                            com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+                                    customParam__ = input.readMessage(
+                                    CustomParamDefaultEntryHolder.defaultEntry.getParserForType(), extensionRegistry);
+                            customParam_.getMutableMap().put(
+                                    customParam__.getKey(), customParam__.getValue());
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownFieldProto3(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
             }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
+
+        public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
-    }
+            return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
+        }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @SuppressWarnings({"rawtypes"})
+        @java.lang.Override
+        protected com.google.protobuf.MapField internalGetMapField(
+                int number) {
+            switch (number) {
+                case 5:
+                    return internalGetCustomParam();
+                default:
+                    throw new RuntimeException(
+                            "Invalid map field number: " + number);
+            }
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.class, cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.Builder.class);
+            return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.class, cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.Builder.class);
+        }
+
+        private int bitField0_;
+        public static final int SERVICE_NAME_FIELD_NUMBER = 1;
+        private volatile java.lang.Object serviceName_;
+
+        /**
+         * <pre>
+         * 服务名或接口名
+         * </pre>
+         *
+         * <code>string service_name = 1;</code>
+         */
+        public java.lang.String getServiceName() {
+            java.lang.Object ref = serviceName_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                serviceName_ = s;
+                return s;
+            }
+        }
+
+        /**
+         * <pre>
+         * 服务名或接口名
+         * </pre>
+         *
+         * <code>string service_name = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+        getServiceNameBytes() {
+            java.lang.Object ref = serviceName_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                serviceName_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        public static final int METHOD_NAME_FIELD_NUMBER = 2;
+        private volatile java.lang.Object methodName_;
+
+        /**
+         * <pre>
+         * 方法名
+         * </pre>
+         *
+         * <code>string method_name = 2;</code>
+         */
+        public java.lang.String getMethodName() {
+            java.lang.Object ref = methodName_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                methodName_ = s;
+                return s;
+            }
+        }
+
+        /**
+         * <pre>
+         * 方法名
+         * </pre>
+         *
+         * <code>string method_name = 2;</code>
+         */
+        public com.google.protobuf.ByteString
+        getMethodNameBytes() {
+            java.lang.Object ref = methodName_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                methodName_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        public static final int REQUEST_ID_FIELD_NUMBER = 3;
+        private long requestId_;
+
+        /**
+         * <pre>
+         * 请求id
+         * </pre>
+         *
+         * <code>uint64 request_id = 3;</code>
+         */
+        public long getRequestId() {
+            return requestId_;
+        }
+
+        public static final int COMPRESS_TYPE_FIELD_NUMBER = 4;
+        private int compressType_;
+
+        /**
+         * <pre>
+         * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+         * </pre>
+         *
+         * <code>.code.CompressType compress_type = 4;</code>
+         */
+        public int getCompressTypeValue() {
+            return compressType_;
+        }
+
+        /**
+         * <pre>
+         * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+         * </pre>
+         *
+         * <code>.code.CompressType compress_type = 4;</code>
+         */
+        public cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType() {
+            @SuppressWarnings("deprecation")
+            cn.edu.seu.protocol.standard.RpcHeader.CompressType result = cn.edu.seu.protocol.standard.RpcHeader.CompressType.valueOf(compressType_);
+            return result == null ? cn.edu.seu.protocol.standard.RpcHeader.CompressType.UNRECOGNIZED : result;
+        }
+
+        public static final int CUSTOM_PARAM_FIELD_NUMBER = 5;
+
+        private static final class CustomParamDefaultEntryHolder {
+            static final com.google.protobuf.MapEntry<
+                    java.lang.String, java.lang.String> defaultEntry =
+                    com.google.protobuf.MapEntry
+                            .<java.lang.String, java.lang.String>newDefaultInstance(
+                                    cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_CustomParamEntry_descriptor,
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "",
+                                    com.google.protobuf.WireFormat.FieldType.STRING,
+                                    "");
+        }
+
+        private com.google.protobuf.MapField<
+                java.lang.String, java.lang.String> customParam_;
+
+        private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+        internalGetCustomParam() {
+            if (customParam_ == null) {
+                return com.google.protobuf.MapField.emptyMapField(
+                        CustomParamDefaultEntryHolder.defaultEntry);
+            }
+            return customParam_;
+        }
+
+        public int getCustomParamCount() {
+            return internalGetCustomParam().getMap().size();
+        }
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        public boolean containsCustomParam(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            return internalGetCustomParam().getMap().containsKey(key);
+        }
+
+        /**
+         * Use {@link #getCustomParamMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.String> getCustomParam() {
+            return getCustomParamMap();
+        }
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        public java.util.Map<java.lang.String, java.lang.String> getCustomParamMap() {
+            return internalGetCustomParam().getMap();
+        }
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        public java.lang.String getCustomParamOrDefault(
+                java.lang.String key,
+                java.lang.String defaultValue) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.String> map =
+                    internalGetCustomParam().getMap();
+            return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+
+        /**
+         * <pre>
+         * 用户自定义参数
+         * </pre>
+         *
+         * <code>map&lt;string, string&gt; custom_param = 5;</code>
+         */
+
+        public java.lang.String getCustomParamOrThrow(
+                java.lang.String key) {
+            if (key == null) {
+                throw new java.lang.NullPointerException();
+            }
+            java.util.Map<java.lang.String, java.lang.String> map =
+                    internalGetCustomParam().getMap();
+            if (!map.containsKey(key)) {
+                throw new java.lang.IllegalArgumentException();
+            }
+            return map.get(key);
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (!getServiceNameBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 1, serviceName_);
+            }
+            if (!getMethodNameBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 2, methodName_);
+            }
+            if (requestId_ != 0L) {
+                output.writeUInt64(3, requestId_);
+            }
+            if (compressType_ != cn.edu.seu.protocol.standard.RpcHeader.CompressType.COMPRESS_NO.getNumber()) {
+                output.writeEnum(4, compressType_);
+            }
+            com.google.protobuf.GeneratedMessageV3
+                    .serializeStringMapTo(
+                            output,
+                            internalGetCustomParam(),
+                            CustomParamDefaultEntryHolder.defaultEntry,
+                            5);
+            unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (!getServiceNameBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, serviceName_);
+            }
+            if (!getMethodNameBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, methodName_);
+            }
+            if (requestId_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(3, requestId_);
+            }
+            if (compressType_ != cn.edu.seu.protocol.standard.RpcHeader.CompressType.COMPRESS_NO.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(4, compressType_);
+            }
+            for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
+                    : internalGetCustomParam().getMap().entrySet()) {
+                com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
+                        customParam__ = CustomParamDefaultEntryHolder.defaultEntry.newBuilderForType()
+                        .setKey(entry.getKey())
+                        .setValue(entry.getValue())
+                        .build();
+                size += com.google.protobuf.CodedOutputStream
+                        .computeMessageSize(5, customParam__);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof cn.edu.seu.protocol.standard.RpcHeader.RequestHeader)) {
+                return super.equals(obj);
+            }
+            cn.edu.seu.protocol.standard.RpcHeader.RequestHeader other = (cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) obj;
+
+            boolean result = true;
+            result = result && getServiceName()
+                    .equals(other.getServiceName());
+            result = result && getMethodName()
+                    .equals(other.getMethodName());
+            result = result && (getRequestId()
+                    == other.getRequestId());
+            result = result && compressType_ == other.compressType_;
+            result = result && internalGetCustomParam().equals(
+                    other.internalGetCustomParam());
+            result = result && unknownFields.equals(other.unknownFields);
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + SERVICE_NAME_FIELD_NUMBER;
+            hash = (53 * hash) + getServiceName().hashCode();
+            hash = (37 * hash) + METHOD_NAME_FIELD_NUMBER;
+            hash = (53 * hash) + getMethodName().hashCode();
+            hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getRequestId());
+            hash = (37 * hash) + COMPRESS_TYPE_FIELD_NUMBER;
+            hash = (53 * hash) + compressType_;
+            if (!internalGetCustomParam().getMap().isEmpty()) {
+                hash = (37 * hash) + CUSTOM_PARAM_FIELD_NUMBER;
+                hash = (53 * hash) + internalGetCustomParam().hashCode();
+            }
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(cn.edu.seu.protocol.standard.RpcHeader.RequestHeader prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @java.lang.Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * <pre>
+         * 请求Header
+         * </pre>
+         * <p>
+         * Protobuf type {@code code.RequestHeader}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:code.RequestHeader)
+                cn.edu.seu.protocol.standard.RpcHeader.RequestHeaderOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMapField(
+                    int number) {
+                switch (number) {
+                    case 5:
+                        return internalGetCustomParam();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            @SuppressWarnings({"rawtypes"})
+            protected com.google.protobuf.MapField internalGetMutableMapField(
+                    int number) {
+                switch (number) {
+                    case 5:
+                        return internalGetMutableCustomParam();
+                    default:
+                        throw new RuntimeException(
+                                "Invalid map field number: " + number);
+                }
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.class, cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.Builder.class);
+            }
+
+            // Construct using cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @java.lang.Override
+            public Builder clear() {
+                super.clear();
+                serviceName_ = "";
+
+                methodName_ = "";
+
+                requestId_ = 0L;
+
+                compressType_ = 0;
+
+                internalGetMutableCustomParam().clear();
+                return this;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_RequestHeader_descriptor;
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstanceForType() {
+                return cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.getDefaultInstance();
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader build() {
+                cn.edu.seu.protocol.standard.RpcHeader.RequestHeader result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader buildPartial() {
+                cn.edu.seu.protocol.standard.RpcHeader.RequestHeader result = new cn.edu.seu.protocol.standard.RpcHeader.RequestHeader(this);
+                int from_bitField0_ = bitField0_;
+                int to_bitField0_ = 0;
+                result.serviceName_ = serviceName_;
+                result.methodName_ = methodName_;
+                result.requestId_ = requestId_;
+                result.compressType_ = compressType_;
+                result.customParam_ = internalGetCustomParam();
+                result.customParam_.makeImmutable();
+                result.bitField0_ = to_bitField0_;
+                onBuilt();
+                return result;
+            }
+
+            @java.lang.Override
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            @java.lang.Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            @java.lang.Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            @java.lang.Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            @java.lang.Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            @java.lang.Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            @java.lang.Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) {
+                    return mergeFrom((cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(cn.edu.seu.protocol.standard.RpcHeader.RequestHeader other) {
+                if (other == cn.edu.seu.protocol.standard.RpcHeader.RequestHeader.getDefaultInstance()) return this;
+                if (!other.getServiceName().isEmpty()) {
+                    serviceName_ = other.serviceName_;
+                    onChanged();
+                }
+                if (!other.getMethodName().isEmpty()) {
+                    methodName_ = other.methodName_;
+                    onChanged();
+                }
+                if (other.getRequestId() != 0L) {
+                    setRequestId(other.getRequestId());
+                }
+                if (other.compressType_ != 0) {
+                    setCompressTypeValue(other.getCompressTypeValue());
+                }
+                internalGetMutableCustomParam().mergeFrom(
+                        other.internalGetCustomParam());
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @java.lang.Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @java.lang.Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                cn.edu.seu.protocol.standard.RpcHeader.RequestHeader parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (cn.edu.seu.protocol.standard.RpcHeader.RequestHeader) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private int bitField0_;
+
+            private java.lang.Object serviceName_ = "";
+
+            /**
+             * <pre>
+             * 服务名或接口名
+             * </pre>
+             *
+             * <code>string service_name = 1;</code>
+             */
+            public java.lang.String getServiceName() {
+                java.lang.Object ref = serviceName_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    serviceName_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 服务名或接口名
+             * </pre>
+             *
+             * <code>string service_name = 1;</code>
+             */
+            public com.google.protobuf.ByteString
+            getServiceNameBytes() {
+                java.lang.Object ref = serviceName_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    serviceName_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 服务名或接口名
+             * </pre>
+             *
+             * <code>string service_name = 1;</code>
+             */
+            public Builder setServiceName(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                serviceName_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 服务名或接口名
+             * </pre>
+             *
+             * <code>string service_name = 1;</code>
+             */
+            public Builder clearServiceName() {
+
+                serviceName_ = getDefaultInstance().getServiceName();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 服务名或接口名
+             * </pre>
+             *
+             * <code>string service_name = 1;</code>
+             */
+            public Builder setServiceNameBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                serviceName_ = value;
+                onChanged();
+                return this;
+            }
+
+            private java.lang.Object methodName_ = "";
+
+            /**
+             * <pre>
+             * 方法名
+             * </pre>
+             *
+             * <code>string method_name = 2;</code>
+             */
+            public java.lang.String getMethodName() {
+                java.lang.Object ref = methodName_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    methodName_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 方法名
+             * </pre>
+             *
+             * <code>string method_name = 2;</code>
+             */
+            public com.google.protobuf.ByteString
+            getMethodNameBytes() {
+                java.lang.Object ref = methodName_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    methodName_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 方法名
+             * </pre>
+             *
+             * <code>string method_name = 2;</code>
+             */
+            public Builder setMethodName(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                methodName_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 方法名
+             * </pre>
+             *
+             * <code>string method_name = 2;</code>
+             */
+            public Builder clearMethodName() {
+
+                methodName_ = getDefaultInstance().getMethodName();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 方法名
+             * </pre>
+             *
+             * <code>string method_name = 2;</code>
+             */
+            public Builder setMethodNameBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                methodName_ = value;
+                onChanged();
+                return this;
+            }
+
+            private long requestId_;
+
+            /**
+             * <pre>
+             * 请求id
+             * </pre>
+             *
+             * <code>uint64 request_id = 3;</code>
+             */
+            public long getRequestId() {
+                return requestId_;
+            }
+
+            /**
+             * <pre>
+             * 请求id
+             * </pre>
+             *
+             * <code>uint64 request_id = 3;</code>
+             */
+            public Builder setRequestId(long value) {
+
+                requestId_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 请求id
+             * </pre>
+             *
+             * <code>uint64 request_id = 3;</code>
+             */
+            public Builder clearRequestId() {
+
+                requestId_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            private int compressType_ = 0;
+
+            /**
+             * <pre>
+             * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+             * </pre>
+             *
+             * <code>.code.CompressType compress_type = 4;</code>
+             */
+            public int getCompressTypeValue() {
+                return compressType_;
+            }
+
+            /**
+             * <pre>
+             * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+             * </pre>
+             *
+             * <code>.code.CompressType compress_type = 4;</code>
+             */
+            public Builder setCompressTypeValue(int value) {
+                compressType_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+             * </pre>
+             *
+             * <code>.code.CompressType compress_type = 4;</code>
+             */
+            public cn.edu.seu.protocol.standard.RpcHeader.CompressType getCompressType() {
+                @SuppressWarnings("deprecation")
+                cn.edu.seu.protocol.standard.RpcHeader.CompressType result = cn.edu.seu.protocol.standard.RpcHeader.CompressType.valueOf(compressType_);
+                return result == null ? cn.edu.seu.protocol.standard.RpcHeader.CompressType.UNRECOGNIZED : result;
+            }
+
+            /**
+             * <pre>
+             * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+             * </pre>
+             *
+             * <code>.code.CompressType compress_type = 4;</code>
+             */
+            public Builder setCompressType(cn.edu.seu.protocol.standard.RpcHeader.CompressType value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                compressType_ = value.getNumber();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * body消息压缩类型，0：不压缩，1：SNAPPY压缩，2：GZIP压缩
+             * </pre>
+             *
+             * <code>.code.CompressType compress_type = 4;</code>
+             */
+            public Builder clearCompressType() {
+
+                compressType_ = 0;
+                onChanged();
+                return this;
+            }
+
+            private com.google.protobuf.MapField<
+                    java.lang.String, java.lang.String> customParam_;
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+            internalGetCustomParam() {
+                if (customParam_ == null) {
+                    return com.google.protobuf.MapField.emptyMapField(
+                            CustomParamDefaultEntryHolder.defaultEntry);
+                }
+                return customParam_;
+            }
+
+            private com.google.protobuf.MapField<java.lang.String, java.lang.String>
+            internalGetMutableCustomParam() {
+                onChanged();
+                ;
+                if (customParam_ == null) {
+                    customParam_ = com.google.protobuf.MapField.newMapField(
+                            CustomParamDefaultEntryHolder.defaultEntry);
+                }
+                if (!customParam_.isMutable()) {
+                    customParam_ = customParam_.copy();
+                }
+                return customParam_;
+            }
+
+            public int getCustomParamCount() {
+                return internalGetCustomParam().getMap().size();
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public boolean containsCustomParam(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                return internalGetCustomParam().getMap().containsKey(key);
+            }
+
+            /**
+             * Use {@link #getCustomParamMap()} instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.String> getCustomParam() {
+                return getCustomParamMap();
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public java.util.Map<java.lang.String, java.lang.String> getCustomParamMap() {
+                return internalGetCustomParam().getMap();
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public java.lang.String getCustomParamOrDefault(
+                    java.lang.String key,
+                    java.lang.String defaultValue) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.String> map =
+                        internalGetCustomParam().getMap();
+                return map.containsKey(key) ? map.get(key) : defaultValue;
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public java.lang.String getCustomParamOrThrow(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                java.util.Map<java.lang.String, java.lang.String> map =
+                        internalGetCustomParam().getMap();
+                if (!map.containsKey(key)) {
+                    throw new java.lang.IllegalArgumentException();
+                }
+                return map.get(key);
+            }
+
+            public Builder clearCustomParam() {
+                internalGetMutableCustomParam().getMutableMap()
+                        .clear();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public Builder removeCustomParam(
+                    java.lang.String key) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                internalGetMutableCustomParam().getMutableMap()
+                        .remove(key);
+                return this;
+            }
+
+            /**
+             * Use alternate mutation accessors instead.
+             */
+            @java.lang.Deprecated
+            public java.util.Map<java.lang.String, java.lang.String>
+            getMutableCustomParam() {
+                return internalGetMutableCustomParam().getMutableMap();
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+            public Builder putCustomParam(
+                    java.lang.String key,
+                    java.lang.String value) {
+                if (key == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                if (value == null) {
+                    throw new java.lang.NullPointerException();
+                }
+                internalGetMutableCustomParam().getMutableMap()
+                        .put(key, value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 用户自定义参数
+             * </pre>
+             *
+             * <code>map&lt;string, string&gt; custom_param = 5;</code>
+             */
+
+            public Builder putAllCustomParam(
+                    java.util.Map<java.lang.String, java.lang.String> values) {
+                internalGetMutableCustomParam().getMutableMap()
+                        .putAll(values);
+                return this;
+            }
+
+            @java.lang.Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFieldsProto3(unknownFields);
+            }
+
+            @java.lang.Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
+
+
+            // @@protoc_insertion_point(builder_scope:code.RequestHeader)
+        }
+
+        // @@protoc_insertion_point(class_scope:code.RequestHeader)
+        private static final cn.edu.seu.protocol.standard.RpcHeader.RequestHeader DEFAULT_INSTANCE;
+
+        static {
+            DEFAULT_INSTANCE = new cn.edu.seu.protocol.standard.RpcHeader.RequestHeader();
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<RequestHeader>
+                PARSER = new com.google.protobuf.AbstractParser<RequestHeader>() {
+            @java.lang.Override
+            public RequestHeader parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new RequestHeader(input, extensionRegistry);
+            }
+        };
+
+        public static com.google.protobuf.Parser<RequestHeader> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<RequestHeader> getParserForType() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public cn.edu.seu.protocol.standard.RpcHeader.RequestHeader getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
     }
 
-    public static final int REQUEST_ID_FIELD_NUMBER = 1;
-    private long requestId_;
-    /**
-     * <pre>
-     * 请求Id
-     * </pre>
-     *
-     * <code>uint64 request_id = 1;</code>
-     */
-    public long getRequestId() {
-      return requestId_;
+    public interface ResponseHeaderOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:code.ResponseHeader)
+            com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <pre>
+         * 请求Id
+         * </pre>
+         *
+         * <code>uint64 request_id = 1;</code>
+         */
+        long getRequestId();
+
+        /**
+         * <pre>
+         * 返回码，0：成功，1：失败
+         * </pre>
+         *
+         * <code>.code.RespCode res_code = 2;</code>
+         */
+        int getResCodeValue();
+
+        /**
+         * <pre>
+         * 返回码，0：成功，1：失败
+         * </pre>
+         *
+         * <code>.code.RespCode res_code = 2;</code>
+         */
+        cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode();
+
+        /**
+         * <pre>
+         * 返回失败时的错误消息
+         * </pre>
+         *
+         * <code>string res_msg = 3;</code>
+         */
+        java.lang.String getResMsg();
+
+        /**
+         * <pre>
+         * 返回失败时的错误消息
+         * </pre>
+         *
+         * <code>string res_msg = 3;</code>
+         */
+        com.google.protobuf.ByteString
+        getResMsgBytes();
     }
 
-    public static final int RES_CODE_FIELD_NUMBER = 2;
-    private int resCode_;
-    /**
-     * <pre>
-     * 返回码，0：成功，1：失败
-     * </pre>
-     *
-     * <code>.code.RespCode res_code = 2;</code>
-     */
-    public int getResCodeValue() {
-      return resCode_;
-    }
-    /**
-     * <pre>
-     * 返回码，0：成功，1：失败
-     * </pre>
-     *
-     * <code>.code.RespCode res_code = 2;</code>
-     */
-    public cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode() {
-      @SuppressWarnings("deprecation")
-      cn.edu.seu.protocol.standard.RpcHeader.RespCode result = cn.edu.seu.protocol.standard.RpcHeader.RespCode.valueOf(resCode_);
-      return result == null ? cn.edu.seu.protocol.standard.RpcHeader.RespCode.UNRECOGNIZED : result;
-    }
-
-    public static final int RES_MSG_FIELD_NUMBER = 3;
-    private volatile java.lang.Object resMsg_;
-    /**
-     * <pre>
-     * 返回失败时的错误消息
-     * </pre>
-     *
-     * <code>string res_msg = 3;</code>
-     */
-    public java.lang.String getResMsg() {
-      java.lang.Object ref = resMsg_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        resMsg_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     * 返回失败时的错误消息
-     * </pre>
-     *
-     * <code>string res_msg = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getResMsgBytes() {
-      java.lang.Object ref = resMsg_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        resMsg_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (requestId_ != 0L) {
-        output.writeUInt64(1, requestId_);
-      }
-      if (resCode_ != cn.edu.seu.protocol.standard.RpcHeader.RespCode.RESP_SUCCESS.getNumber()) {
-        output.writeEnum(2, resCode_);
-      }
-      if (!getResMsgBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, resMsg_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (requestId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(1, requestId_);
-      }
-      if (resCode_ != cn.edu.seu.protocol.standard.RpcHeader.RespCode.RESP_SUCCESS.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, resCode_);
-      }
-      if (!getResMsgBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, resMsg_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader)) {
-        return super.equals(obj);
-      }
-      cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader other = (cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) obj;
-
-      boolean result = true;
-      result = result && (getRequestId()
-          == other.getRequestId());
-      result = result && resCode_ == other.resCode_;
-      result = result && getResMsg()
-          .equals(other.getResMsg());
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getRequestId());
-      hash = (37 * hash) + RES_CODE_FIELD_NUMBER;
-      hash = (53 * hash) + resCode_;
-      hash = (37 * hash) + RES_MSG_FIELD_NUMBER;
-      hash = (53 * hash) + getResMsg().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
     /**
      * <pre>
      * 响应Header
      * </pre>
-     *
+     * <p>
      * Protobuf type {@code code.ResponseHeader}
      */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:code.ResponseHeader)
-        cn.edu.seu.protocol.standard.RpcHeader.ResponseHeaderOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
-      }
+    public static final class ResponseHeader extends
+            com.google.protobuf.GeneratedMessageV3 implements
+            // @@protoc_insertion_point(message_implements:code.ResponseHeader)
+            ResponseHeaderOrBuilder {
+        private static final long serialVersionUID = 0L;
 
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.class, cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.Builder.class);
-      }
-
-      // Construct using cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
+        // Use ResponseHeader.newBuilder() to construct.
+        private ResponseHeader(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+            super(builder);
         }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        requestId_ = 0L;
 
-        resCode_ = 0;
-
-        resMsg_ = "";
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
-      }
-
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstanceForType() {
-        return cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader build() {
-        cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
+        private ResponseHeader() {
+            requestId_ = 0L;
+            resCode_ = 0;
+            resMsg_ = "";
         }
-        return result;
-      }
 
-      @java.lang.Override
-      public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader buildPartial() {
-        cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader result = new cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader(this);
-        result.requestId_ = requestId_;
-        result.resCode_ = resCode_;
-        result.resMsg_ = resMsg_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) {
-          return mergeFrom((cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+            return this.unknownFields;
         }
-      }
 
-      public Builder mergeFrom(cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader other) {
-        if (other == cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.getDefaultInstance()) return this;
-        if (other.getRequestId() != 0L) {
-          setRequestId(other.getRequestId());
+        private ResponseHeader(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            this();
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            int mutable_bitField0_ = 0;
+            com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                    com.google.protobuf.UnknownFieldSet.newBuilder();
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+
+                            requestId_ = input.readUInt64();
+                            break;
+                        }
+                        case 16: {
+                            int rawValue = input.readEnum();
+
+                            resCode_ = rawValue;
+                            break;
+                        }
+                        case 26: {
+                            java.lang.String s = input.readStringRequireUtf8();
+
+                            resMsg_ = s;
+                            break;
+                        }
+                        default: {
+                            if (!parseUnknownFieldProto3(
+                                    input, unknownFields, extensionRegistry, tag)) {
+                                done = true;
+                            }
+                            break;
+                        }
+                    }
+                }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(this);
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(
+                        e).setUnfinishedMessage(this);
+            } finally {
+                this.unknownFields = unknownFields.build();
+                makeExtensionsImmutable();
+            }
         }
-        if (other.resCode_ != 0) {
-          setResCodeValue(other.getResCodeValue());
+
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
         }
-        if (!other.getResMsg().isEmpty()) {
-          resMsg_ = other.resMsg_;
-          onChanged();
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.class, cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.Builder.class);
         }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
 
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
+        public static final int REQUEST_ID_FIELD_NUMBER = 1;
+        private long requestId_;
 
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
+        /**
+         * <pre>
+         * 请求Id
+         * </pre>
+         *
+         * <code>uint64 request_id = 1;</code>
+         */
+        public long getRequestId() {
+            return requestId_;
         }
-        return this;
-      }
 
-      private long requestId_ ;
-      /**
-       * <pre>
-       * 请求Id
-       * </pre>
-       *
-       * <code>uint64 request_id = 1;</code>
-       */
-      public long getRequestId() {
-        return requestId_;
-      }
-      /**
-       * <pre>
-       * 请求Id
-       * </pre>
-       *
-       * <code>uint64 request_id = 1;</code>
-       */
-      public Builder setRequestId(long value) {
-        
-        requestId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 请求Id
-       * </pre>
-       *
-       * <code>uint64 request_id = 1;</code>
-       */
-      public Builder clearRequestId() {
-        
-        requestId_ = 0L;
-        onChanged();
-        return this;
-      }
+        public static final int RES_CODE_FIELD_NUMBER = 2;
+        private int resCode_;
 
-      private int resCode_ = 0;
-      /**
-       * <pre>
-       * 返回码，0：成功，1：失败
-       * </pre>
-       *
-       * <code>.code.RespCode res_code = 2;</code>
-       */
-      public int getResCodeValue() {
-        return resCode_;
-      }
-      /**
-       * <pre>
-       * 返回码，0：成功，1：失败
-       * </pre>
-       *
-       * <code>.code.RespCode res_code = 2;</code>
-       */
-      public Builder setResCodeValue(int value) {
-        resCode_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 返回码，0：成功，1：失败
-       * </pre>
-       *
-       * <code>.code.RespCode res_code = 2;</code>
-       */
-      public cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode() {
-        @SuppressWarnings("deprecation")
-        cn.edu.seu.protocol.standard.RpcHeader.RespCode result = cn.edu.seu.protocol.standard.RpcHeader.RespCode.valueOf(resCode_);
-        return result == null ? cn.edu.seu.protocol.standard.RpcHeader.RespCode.UNRECOGNIZED : result;
-      }
-      /**
-       * <pre>
-       * 返回码，0：成功，1：失败
-       * </pre>
-       *
-       * <code>.code.RespCode res_code = 2;</code>
-       */
-      public Builder setResCode(cn.edu.seu.protocol.standard.RpcHeader.RespCode value) {
-        if (value == null) {
-          throw new NullPointerException();
+        /**
+         * <pre>
+         * 返回码，0：成功，1：失败
+         * </pre>
+         *
+         * <code>.code.RespCode res_code = 2;</code>
+         */
+        public int getResCodeValue() {
+            return resCode_;
         }
-        
-        resCode_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 返回码，0：成功，1：失败
-       * </pre>
-       *
-       * <code>.code.RespCode res_code = 2;</code>
-       */
-      public Builder clearResCode() {
-        
-        resCode_ = 0;
-        onChanged();
-        return this;
-      }
 
-      private java.lang.Object resMsg_ = "";
-      /**
-       * <pre>
-       * 返回失败时的错误消息
-       * </pre>
-       *
-       * <code>string res_msg = 3;</code>
-       */
-      public java.lang.String getResMsg() {
-        java.lang.Object ref = resMsg_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          resMsg_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
+        /**
+         * <pre>
+         * 返回码，0：成功，1：失败
+         * </pre>
+         *
+         * <code>.code.RespCode res_code = 2;</code>
+         */
+        public cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode() {
+            @SuppressWarnings("deprecation")
+            cn.edu.seu.protocol.standard.RpcHeader.RespCode result = cn.edu.seu.protocol.standard.RpcHeader.RespCode.valueOf(resCode_);
+            return result == null ? cn.edu.seu.protocol.standard.RpcHeader.RespCode.UNRECOGNIZED : result;
         }
-      }
-      /**
-       * <pre>
-       * 返回失败时的错误消息
-       * </pre>
-       *
-       * <code>string res_msg = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getResMsgBytes() {
-        java.lang.Object ref = resMsg_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          resMsg_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
+
+        public static final int RES_MSG_FIELD_NUMBER = 3;
+        private volatile java.lang.Object resMsg_;
+
+        /**
+         * <pre>
+         * 返回失败时的错误消息
+         * </pre>
+         *
+         * <code>string res_msg = 3;</code>
+         */
+        public java.lang.String getResMsg() {
+            java.lang.Object ref = resMsg_;
+            if (ref instanceof java.lang.String) {
+                return (java.lang.String) ref;
+            } else {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                resMsg_ = s;
+                return s;
+            }
         }
-      }
-      /**
-       * <pre>
-       * 返回失败时的错误消息
-       * </pre>
-       *
-       * <code>string res_msg = 3;</code>
-       */
-      public Builder setResMsg(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        resMsg_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 返回失败时的错误消息
-       * </pre>
-       *
-       * <code>string res_msg = 3;</code>
-       */
-      public Builder clearResMsg() {
-        
-        resMsg_ = getDefaultInstance().getResMsg();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       * 返回失败时的错误消息
-       * </pre>
-       *
-       * <code>string res_msg = 3;</code>
-       */
-      public Builder setResMsgBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        resMsg_ = value;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
 
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
+        /**
+         * <pre>
+         * 返回失败时的错误消息
+         * </pre>
+         *
+         * <code>string res_msg = 3;</code>
+         */
+        public com.google.protobuf.ByteString
+        getResMsgBytes() {
+            java.lang.Object ref = resMsg_;
+            if (ref instanceof java.lang.String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                resMsg_ = b;
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
+
+        private byte memoizedIsInitialized = -1;
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+            byte isInitialized = memoizedIsInitialized;
+            if (isInitialized == 1) return true;
+            if (isInitialized == 0) return false;
+
+            memoizedIsInitialized = 1;
+            return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                throws java.io.IOException {
+            if (requestId_ != 0L) {
+                output.writeUInt64(1, requestId_);
+            }
+            if (resCode_ != cn.edu.seu.protocol.standard.RpcHeader.RespCode.RESP_SUCCESS.getNumber()) {
+                output.writeEnum(2, resCode_);
+            }
+            if (!getResMsgBytes().isEmpty()) {
+                com.google.protobuf.GeneratedMessageV3.writeString(output, 3, resMsg_);
+            }
+            unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+            int size = memoizedSize;
+            if (size != -1) return size;
+
+            size = 0;
+            if (requestId_ != 0L) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeUInt64Size(1, requestId_);
+            }
+            if (resCode_ != cn.edu.seu.protocol.standard.RpcHeader.RespCode.RESP_SUCCESS.getNumber()) {
+                size += com.google.protobuf.CodedOutputStream
+                        .computeEnumSize(2, resCode_);
+            }
+            if (!getResMsgBytes().isEmpty()) {
+                size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, resMsg_);
+            }
+            size += unknownFields.getSerializedSize();
+            memoizedSize = size;
+            return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader)) {
+                return super.equals(obj);
+            }
+            cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader other = (cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) obj;
+
+            boolean result = true;
+            result = result && (getRequestId()
+                    == other.getRequestId());
+            result = result && resCode_ == other.resCode_;
+            result = result && getResMsg()
+                    .equals(other.getResMsg());
+            result = result && unknownFields.equals(other.unknownFields);
+            return result;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+            if (memoizedHashCode != 0) {
+                return memoizedHashCode;
+            }
+            int hash = 41;
+            hash = (19 * hash) + getDescriptor().hashCode();
+            hash = (37 * hash) + REQUEST_ID_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                    getRequestId());
+            hash = (37 * hash) + RES_CODE_FIELD_NUMBER;
+            hash = (53 * hash) + resCode_;
+            hash = (37 * hash) + RES_MSG_FIELD_NUMBER;
+            hash = (53 * hash) + getResMsg().hashCode();
+            hash = (29 * hash) + unknownFields.hashCode();
+            memoizedHashCode = hash;
+            return hash;
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                java.nio.ByteBuffer data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                java.nio.ByteBuffer data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return PARSER.parseFrom(data, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input);
+        }
+
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageV3
+                    .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() {
+            return newBuilder();
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+
+        public static Builder newBuilder(cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        @java.lang.Override
+        public Builder toBuilder() {
+            return this == DEFAULT_INSTANCE
+                    ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            Builder builder = new Builder(parent);
+            return builder;
+        }
+
+        /**
+         * <pre>
+         * 响应Header
+         * </pre>
+         * <p>
+         * Protobuf type {@code code.ResponseHeader}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+                // @@protoc_insertion_point(builder_implements:code.ResponseHeader)
+                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeaderOrBuilder {
+            public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
+            }
+
+            @java.lang.Override
+            protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_fieldAccessorTable
+                        .ensureFieldAccessorsInitialized(
+                                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.class, cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.Builder.class);
+            }
+
+            // Construct using cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.newBuilder()
+            private Builder() {
+                maybeForceBuilderInitialization();
+            }
+
+            private Builder(
+                    com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+                super(parent);
+                maybeForceBuilderInitialization();
+            }
+
+            private void maybeForceBuilderInitialization() {
+                if (com.google.protobuf.GeneratedMessageV3
+                        .alwaysUseFieldBuilders) {
+                }
+            }
+
+            @java.lang.Override
+            public Builder clear() {
+                super.clear();
+                requestId_ = 0L;
+
+                resCode_ = 0;
+
+                resMsg_ = "";
+
+                return this;
+            }
+
+            @java.lang.Override
+            public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+                return cn.edu.seu.protocol.standard.RpcHeader.internal_static_code_ResponseHeader_descriptor;
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstanceForType() {
+                return cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.getDefaultInstance();
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader build() {
+                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader result = buildPartial();
+                if (!result.isInitialized()) {
+                    throw newUninitializedMessageException(result);
+                }
+                return result;
+            }
+
+            @java.lang.Override
+            public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader buildPartial() {
+                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader result = new cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader(this);
+                result.requestId_ = requestId_;
+                result.resCode_ = resCode_;
+                result.resMsg_ = resMsg_;
+                onBuilt();
+                return result;
+            }
+
+            @java.lang.Override
+            public Builder clone() {
+                return (Builder) super.clone();
+            }
+
+            @java.lang.Override
+            public Builder setField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return (Builder) super.setField(field, value);
+            }
+
+            @java.lang.Override
+            public Builder clearField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field) {
+                return (Builder) super.clearField(field);
+            }
+
+            @java.lang.Override
+            public Builder clearOneof(
+                    com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+                return (Builder) super.clearOneof(oneof);
+            }
+
+            @java.lang.Override
+            public Builder setRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    int index, java.lang.Object value) {
+                return (Builder) super.setRepeatedField(field, index, value);
+            }
+
+            @java.lang.Override
+            public Builder addRepeatedField(
+                    com.google.protobuf.Descriptors.FieldDescriptor field,
+                    java.lang.Object value) {
+                return (Builder) super.addRepeatedField(field, value);
+            }
+
+            @java.lang.Override
+            public Builder mergeFrom(com.google.protobuf.Message other) {
+                if (other instanceof cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) {
+                    return mergeFrom((cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) other);
+                } else {
+                    super.mergeFrom(other);
+                    return this;
+                }
+            }
+
+            public Builder mergeFrom(cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader other) {
+                if (other == cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader.getDefaultInstance()) return this;
+                if (other.getRequestId() != 0L) {
+                    setRequestId(other.getRequestId());
+                }
+                if (other.resCode_ != 0) {
+                    setResCodeValue(other.getResCodeValue());
+                }
+                if (!other.getResMsg().isEmpty()) {
+                    resMsg_ = other.resMsg_;
+                    onChanged();
+                }
+                this.mergeUnknownFields(other.unknownFields);
+                onChanged();
+                return this;
+            }
+
+            @java.lang.Override
+            public final boolean isInitialized() {
+                return true;
+            }
+
+            @java.lang.Override
+            public Builder mergeFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws java.io.IOException {
+                cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader parsedMessage = null;
+                try {
+                    parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                    parsedMessage = (cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader) e.getUnfinishedMessage();
+                    throw e.unwrapIOException();
+                } finally {
+                    if (parsedMessage != null) {
+                        mergeFrom(parsedMessage);
+                    }
+                }
+                return this;
+            }
+
+            private long requestId_;
+
+            /**
+             * <pre>
+             * 请求Id
+             * </pre>
+             *
+             * <code>uint64 request_id = 1;</code>
+             */
+            public long getRequestId() {
+                return requestId_;
+            }
+
+            /**
+             * <pre>
+             * 请求Id
+             * </pre>
+             *
+             * <code>uint64 request_id = 1;</code>
+             */
+            public Builder setRequestId(long value) {
+
+                requestId_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 请求Id
+             * </pre>
+             *
+             * <code>uint64 request_id = 1;</code>
+             */
+            public Builder clearRequestId() {
+
+                requestId_ = 0L;
+                onChanged();
+                return this;
+            }
+
+            private int resCode_ = 0;
+
+            /**
+             * <pre>
+             * 返回码，0：成功，1：失败
+             * </pre>
+             *
+             * <code>.code.RespCode res_code = 2;</code>
+             */
+            public int getResCodeValue() {
+                return resCode_;
+            }
+
+            /**
+             * <pre>
+             * 返回码，0：成功，1：失败
+             * </pre>
+             *
+             * <code>.code.RespCode res_code = 2;</code>
+             */
+            public Builder setResCodeValue(int value) {
+                resCode_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 返回码，0：成功，1：失败
+             * </pre>
+             *
+             * <code>.code.RespCode res_code = 2;</code>
+             */
+            public cn.edu.seu.protocol.standard.RpcHeader.RespCode getResCode() {
+                @SuppressWarnings("deprecation")
+                cn.edu.seu.protocol.standard.RpcHeader.RespCode result = cn.edu.seu.protocol.standard.RpcHeader.RespCode.valueOf(resCode_);
+                return result == null ? cn.edu.seu.protocol.standard.RpcHeader.RespCode.UNRECOGNIZED : result;
+            }
+
+            /**
+             * <pre>
+             * 返回码，0：成功，1：失败
+             * </pre>
+             *
+             * <code>.code.RespCode res_code = 2;</code>
+             */
+            public Builder setResCode(cn.edu.seu.protocol.standard.RpcHeader.RespCode value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                resCode_ = value.getNumber();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 返回码，0：成功，1：失败
+             * </pre>
+             *
+             * <code>.code.RespCode res_code = 2;</code>
+             */
+            public Builder clearResCode() {
+
+                resCode_ = 0;
+                onChanged();
+                return this;
+            }
+
+            private java.lang.Object resMsg_ = "";
+
+            /**
+             * <pre>
+             * 返回失败时的错误消息
+             * </pre>
+             *
+             * <code>string res_msg = 3;</code>
+             */
+            public java.lang.String getResMsg() {
+                java.lang.Object ref = resMsg_;
+                if (!(ref instanceof java.lang.String)) {
+                    com.google.protobuf.ByteString bs =
+                            (com.google.protobuf.ByteString) ref;
+                    java.lang.String s = bs.toStringUtf8();
+                    resMsg_ = s;
+                    return s;
+                } else {
+                    return (java.lang.String) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 返回失败时的错误消息
+             * </pre>
+             *
+             * <code>string res_msg = 3;</code>
+             */
+            public com.google.protobuf.ByteString
+            getResMsgBytes() {
+                java.lang.Object ref = resMsg_;
+                if (ref instanceof String) {
+                    com.google.protobuf.ByteString b =
+                            com.google.protobuf.ByteString.copyFromUtf8(
+                                    (java.lang.String) ref);
+                    resMsg_ = b;
+                    return b;
+                } else {
+                    return (com.google.protobuf.ByteString) ref;
+                }
+            }
+
+            /**
+             * <pre>
+             * 返回失败时的错误消息
+             * </pre>
+             *
+             * <code>string res_msg = 3;</code>
+             */
+            public Builder setResMsg(
+                    java.lang.String value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+
+                resMsg_ = value;
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 返回失败时的错误消息
+             * </pre>
+             *
+             * <code>string res_msg = 3;</code>
+             */
+            public Builder clearResMsg() {
+
+                resMsg_ = getDefaultInstance().getResMsg();
+                onChanged();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * 返回失败时的错误消息
+             * </pre>
+             *
+             * <code>string res_msg = 3;</code>
+             */
+            public Builder setResMsgBytes(
+                    com.google.protobuf.ByteString value) {
+                if (value == null) {
+                    throw new NullPointerException();
+                }
+                checkByteStringIsUtf8(value);
+
+                resMsg_ = value;
+                onChanged();
+                return this;
+            }
+
+            @java.lang.Override
+            public final Builder setUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.setUnknownFieldsProto3(unknownFields);
+            }
+
+            @java.lang.Override
+            public final Builder mergeUnknownFields(
+                    final com.google.protobuf.UnknownFieldSet unknownFields) {
+                return super.mergeUnknownFields(unknownFields);
+            }
 
 
-      // @@protoc_insertion_point(builder_scope:code.ResponseHeader)
-    }
+            // @@protoc_insertion_point(builder_scope:code.ResponseHeader)
+        }
 
-    // @@protoc_insertion_point(class_scope:code.ResponseHeader)
-    private static final cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader();
-    }
+        // @@protoc_insertion_point(class_scope:code.ResponseHeader)
+        private static final cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader DEFAULT_INSTANCE;
 
-    public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
+        static {
+            DEFAULT_INSTANCE = new cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader();
+        }
 
-    private static final com.google.protobuf.Parser<ResponseHeader>
-        PARSER = new com.google.protobuf.AbstractParser<ResponseHeader>() {
-      @java.lang.Override
-      public ResponseHeader parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ResponseHeader(input, extensionRegistry);
-      }
-    };
+        public static cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-    public static com.google.protobuf.Parser<ResponseHeader> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ResponseHeader> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_code_RequestHeader_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_code_RequestHeader_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_code_RequestHeader_CustomParamEntry_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_code_RequestHeader_CustomParamEntry_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_code_ResponseHeader_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_code_ResponseHeader_fieldAccessorTable;
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-  static {
-    java.lang.String[] descriptorData = {
-      "\n$cn/edu/seu/protocol/rpc_header.proto\022\004" +
-      "code\"\351\001\n\rRequestHeader\022\024\n\014service_name\030\001" +
-      " \001(\t\022\023\n\013method_name\030\002 \001(\t\022\022\n\nrequest_id\030" +
-      "\003 \001(\004\022)\n\rcompress_type\030\004 \001(\0162\022.code.Comp" +
-      "ressType\022:\n\014custom_param\030\005 \003(\0132$.code.Re" +
-      "questHeader.CustomParamEntry\0322\n\020CustomPa" +
-      "ramEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001" +
-      "\"W\n\016ResponseHeader\022\022\n\nrequest_id\030\001 \001(\004\022 " +
-      "\n\010res_code\030\002 \001(\0162\016.code.RespCode\022\017\n\007res_" +
-      "msg\030\003 \001(\t*H\n\014CompressType\022\017\n\013COMPRESS_NO" +
-      "\020\000\022\023\n\017COMPRESS_SNAPPY\020\001\022\022\n\016COMPERESS_GZI" +
-      "P\020\002*+\n\010RespCode\022\020\n\014RESP_SUCCESS\020\000\022\r\n\tRES" +
-      "P_FAIL\020\001B)\n\034cn.edu.seu.protocol.standard" +
-      "B\tRpcHeaderb\006proto3"
-    };
-    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
+        private static final com.google.protobuf.Parser<ResponseHeader>
+                PARSER = new com.google.protobuf.AbstractParser<ResponseHeader>() {
+            @java.lang.Override
+            public ResponseHeader parsePartialFrom(
+                    com.google.protobuf.CodedInputStream input,
+                    com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                    throws com.google.protobuf.InvalidProtocolBufferException {
+                return new ResponseHeader(input, extensionRegistry);
+            }
         };
-    com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        }, assigner);
-    internal_static_code_RequestHeader_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_code_RequestHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_code_RequestHeader_descriptor,
-        new java.lang.String[] { "ServiceName", "MethodName", "RequestId", "CompressType", "CustomParam", });
-    internal_static_code_RequestHeader_CustomParamEntry_descriptor =
-      internal_static_code_RequestHeader_descriptor.getNestedTypes().get(0);
-    internal_static_code_RequestHeader_CustomParamEntry_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_code_RequestHeader_CustomParamEntry_descriptor,
-        new java.lang.String[] { "Key", "Value", });
-    internal_static_code_ResponseHeader_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_code_ResponseHeader_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_code_ResponseHeader_descriptor,
-        new java.lang.String[] { "RequestId", "ResCode", "ResMsg", });
-  }
 
-  // @@protoc_insertion_point(outer_class_scope)
+        public static com.google.protobuf.Parser<ResponseHeader> parser() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<ResponseHeader> getParserForType() {
+            return PARSER;
+        }
+
+        @java.lang.Override
+        public cn.edu.seu.protocol.standard.RpcHeader.ResponseHeader getDefaultInstanceForType() {
+            return DEFAULT_INSTANCE;
+        }
+
+    }
+
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_code_RequestHeader_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_code_RequestHeader_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_code_RequestHeader_CustomParamEntry_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_code_RequestHeader_CustomParamEntry_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_code_ResponseHeader_descriptor;
+    private static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_code_ResponseHeader_fieldAccessorTable;
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
+
+    private static com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
+
+    static {
+        java.lang.String[] descriptorData = {
+                "\n$cn/edu/seu/protocol/rpc_header.proto\022\004" +
+                        "code\"\351\001\n\rRequestHeader\022\024\n\014service_name\030\001" +
+                        " \001(\t\022\023\n\013method_name\030\002 \001(\t\022\022\n\nrequest_id\030" +
+                        "\003 \001(\004\022)\n\rcompress_type\030\004 \001(\0162\022.code.Comp" +
+                        "ressType\022:\n\014custom_param\030\005 \003(\0132$.code.Re" +
+                        "questHeader.CustomParamEntry\0322\n\020CustomPa" +
+                        "ramEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001" +
+                        "\"W\n\016ResponseHeader\022\022\n\nrequest_id\030\001 \001(\004\022 " +
+                        "\n\010res_code\030\002 \001(\0162\016.code.RespCode\022\017\n\007res_" +
+                        "msg\030\003 \001(\t*H\n\014CompressType\022\017\n\013COMPRESS_NO" +
+                        "\020\000\022\023\n\017COMPRESS_SNAPPY\020\001\022\022\n\016COMPERESS_GZI" +
+                        "P\020\002*+\n\010RespCode\022\020\n\014RESP_SUCCESS\020\000\022\r\n\tRES" +
+                        "P_FAIL\020\001B)\n\034cn.edu.seu.protocol.standard" +
+                        "B\tRpcHeaderb\006proto3"
+        };
+        com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+                new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+                    public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                            com.google.protobuf.Descriptors.FileDescriptor root) {
+                        descriptor = root;
+                        return null;
+                    }
+                };
+        com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        }, assigner);
+        internal_static_code_RequestHeader_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_code_RequestHeader_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_code_RequestHeader_descriptor,
+                new java.lang.String[]{"ServiceName", "MethodName", "RequestId", "CompressType", "CustomParam",});
+        internal_static_code_RequestHeader_CustomParamEntry_descriptor =
+                internal_static_code_RequestHeader_descriptor.getNestedTypes().get(0);
+        internal_static_code_RequestHeader_CustomParamEntry_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_code_RequestHeader_CustomParamEntry_descriptor,
+                new java.lang.String[]{"Key", "Value",});
+        internal_static_code_ResponseHeader_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_code_ResponseHeader_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_code_ResponseHeader_descriptor,
+                new java.lang.String[]{"RequestId", "ResCode", "ResMsg",});
+    }
+
+    // @@protoc_insertion_point(outer_class_scope)
 }

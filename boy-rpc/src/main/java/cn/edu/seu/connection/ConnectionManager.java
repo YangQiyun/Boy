@@ -1,7 +1,8 @@
-package cn.edu.seu.rpc;
+package cn.edu.seu.connection;
 
 import cn.edu.seu.connection.Connection;
 import cn.edu.seu.exception.RemotingException;
+import cn.edu.seu.rpc.EndPoint;
 
 import java.util.List;
 import java.util.Map;
@@ -16,12 +17,14 @@ public interface ConnectionManager {
 
     /**
      * 加入包含该connection的所有pool
+     *
      * @param connection
      */
     void add(Connection connection);
 
     /**
      * 加入到指定的pool中
+     *
      * @param connection
      * @param poolKey
      */
@@ -29,6 +32,7 @@ public interface ConnectionManager {
 
     /**
      * 获取指定pool中的某一个connection
+     *
      * @param poolKey
      * @return 其他非目标情况均返回null
      */
@@ -36,6 +40,7 @@ public interface ConnectionManager {
 
     /**
      * 获取指定pool中的所有的链接
+     *
      * @param poolKey
      * @return
      */
@@ -43,6 +48,7 @@ public interface ConnectionManager {
 
     /**
      * 获取该manager中的所有链接，key是poolKey，value是conn的list
+     *
      * @return
      */
     Map<String, List<Connection>> getAll();
@@ -61,13 +67,13 @@ public interface ConnectionManager {
 
     /**
      * 返回指定的pool链接的个数
+     *
      * @param poolKey
      * @return
      */
     int count(String poolKey);
 
     /**
-     *
      * @param endPoint
      * @return
      * @throws InterruptedException
@@ -89,7 +95,7 @@ public interface ConnectionManager {
     /**
      * Create a connection using specified {@link String} address.
      *
-     * @param address a {@link String} address, e.g. 127.0.0.1:1111
+     * @param address        a {@link String} address, e.g. 127.0.0.1:1111
      * @param connectTimeout an int connect timeout value
      * @return the created {@link Connection}
      * @throws RemotingException if create failed
@@ -99,8 +105,8 @@ public interface ConnectionManager {
     /**
      * Create a connection using specified ip and port.
      *
-     * @param ip connect ip, e.g. 127.0.0.1
-     * @param port connect port, e.g. 1111
+     * @param ip             connect ip, e.g. 127.0.0.1
+     * @param port           connect port, e.g. 1111
      * @param connectTimeout an int connect timeout value
      * @return the created {@link Connection}
      */

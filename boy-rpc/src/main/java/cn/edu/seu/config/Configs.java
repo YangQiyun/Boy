@@ -101,19 +101,31 @@ public class Configs {
 
     // ~~~ configs and default values for connection manager
 
-    /** Thread pool min size for the connection manager executor */
-    public static final String CONN_CREATE_TP_MIN_SIZE               = "boy.conn.create.tp.min";
-    public static final int CONN_CREATE_TP_MIN_SIZE_DEFAULT       = 3;
+    /**
+     * Thread pool min size for the connection manager executor
+     */
+    public static final String CONN_CREATE_TP_MIN_SIZE = "boy.conn.create.tp.min";
+    public static final int CONN_CREATE_TP_MIN_SIZE_DEFAULT = 3;
 
-    /** Thread pool max size for the connection manager executor */
-    public static final String CONN_CREATE_TP_MAX_SIZE               = "boy.conn.create.tp.max";
-    public static final int CONN_CREATE_TP_MAX_SIZE_DEFAULT       = 8;
+    /**
+     * Thread pool max size for the connection manager executor
+     */
+    public static final String CONN_CREATE_TP_MAX_SIZE = "boy.conn.create.tp.max";
+    public static final int CONN_CREATE_TP_MAX_SIZE_DEFAULT = 8;
 
-    /** Thread pool queue size for the connection manager executor */
-    public static final String CONN_CREATE_TP_QUEUE_SIZE             = "boy.conn.create.tp.queue";
-    public static final int CONN_CREATE_TP_QUEUE_SIZE_DEFAULT     = 50;
+    /**
+     * Thread pool queue size for the connection manager executor
+     */
+    public static final String CONN_CREATE_TP_QUEUE_SIZE = "boy.conn.create.tp.queue";
+    public static final int CONN_CREATE_TP_QUEUE_SIZE_DEFAULT = 50;
 
-    /** Thread pool keep alive time for the connection manager executor */
-    public static final String CONN_CREATE_TP_KEEPALIVE_TIME         = "boy.conn.create.tp.keepalive";
+    /**
+     * Thread pool keep alive time for the connection manager executor
+     */
+    public static final String CONN_CREATE_TP_KEEPALIVE_TIME = "boy.conn.create.tp.keepalive";
     public static final long CONN_CREATE_TP_KEEPALIVE_TIME_DEFAULT = 60L;
+
+    // ~~~ configs for server
+    public static final String RPC_SERVER_WORK_POOL = "boy.server.workpool";
+    public static final int RPC_SERVER_WORK_POOL_DEFAULT = 20;
 }

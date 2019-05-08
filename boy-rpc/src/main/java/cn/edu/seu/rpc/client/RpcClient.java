@@ -1,4 +1,4 @@
-package cn.edu.seu.rpc;
+package cn.edu.seu.rpc.client;
 
 import cn.edu.seu.common.NamedThreadFactory;
 import cn.edu.seu.config.AbstractConfigurableInstance;
@@ -8,6 +8,7 @@ import cn.edu.seu.config.RpcConfigManager;
 import cn.edu.seu.connection.Connection;
 import cn.edu.seu.connection.DefaultConnectionManager;
 import cn.edu.seu.exception.RemotingException;
+import cn.edu.seu.rpc.EndPoint;
 import exception.EmptyException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,12 +42,12 @@ public class RpcClient extends AbstractConfigurableInstance {
         super();
         configManager.addConfigType(Configs.RPC_CLIENT, true);
         configManager.addConfigType(Configs.RPC_SERVER, Configs.RPC_SERVER_DEFAULT);
-        configManager.addConfigType(Configs.READ_TIMEOUT_MILLIS,Configs.READ_TIMEOUT_MILLIS_DEFAULT);
+        configManager.addConfigType(Configs.READ_TIMEOUT_MILLIS, Configs.READ_TIMEOUT_MILLIS_DEFAULT);
         setConfigManager(RpcConfigManager.INSTANCE);
     }
 
     public void init() {
-        connectionManager = new DefaultConnectionManager(new RpcClientHandler());
+        connectionManager = new DefaultConnectionManager(new RpcClientHandler(this));
         connectionManager.init();
         pendingRPC = new ConcurrentHashMap<>();
 
@@ -58,7 +59,7 @@ public class RpcClient extends AbstractConfigurableInstance {
             }
         }
 
-        timeoutTimer = Executors.newScheduledThreadPool(1,new NamedThreadFactory("sendRequestTimer",true));
+        timeoutTimer = Executors.newScheduledThreadPool(1, new NamedThreadFactory("sendRequestTimer", true));
     }
 
     public RpcFuture sendRequest(long requestId, Object fullRequest, Class<?> responseClass, RpcCallback callback) {
@@ -73,10 +74,10 @@ public class RpcClient extends AbstractConfigurableInstance {
                     }
                 }, configManager.getDefaultValue(Configs.READ_TIMEOUT_MILLIS), TimeUnit.MILLISECONDS);
 
-                RpcFuture future = new RpcFuture(requestId,responseClass,callback,scheduledFuture,fullRequest);
-                addFuture(requestId,future);
+                RpcFuture future = new RpcFuture(requestId, responseClass, callback, scheduledFuture, fullRequest);
+                addFuture(requestId, future);
                 connection.getChannel().writeAndFlush(fullRequest);
-            }catch (EmptyException e){
+            } catch (EmptyException e) {
                 log.error(e.getMessage());
             }
         }
@@ -91,7 +92,7 @@ public class RpcClient extends AbstractConfigurableInstance {
         return pendingRPC.get(requestId);
     }
 
-    public RpcFuture removeFuture(long requestId){
+    public RpcFuture removeFuture(long requestId) {
         return pendingRPC.remove(requestId);
     }
 }

@@ -3,9 +3,12 @@ package cn.edu.seu.util;
 import cn.edu.seu.config.Configs;
 import cn.edu.seu.config.RpcConfigManager;
 import exception.EmptyException;
+import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.epoll.Epoll;
+import io.netty.channel.epoll.EpollChannelOption;
 import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollMode;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.epoll.EpollSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -20,12 +23,14 @@ import java.util.concurrent.ThreadFactory;
 @Slf4j
 public class NettyEventLoopUtil {
 
-    /** check whether epoll enabled, and it would not be changed during runtime. */
+    /**
+     * check whether epoll enabled, and it would not be changed during runtime.
+     */
     private static boolean epollEnabled;
 
     static {
         try {
-            epollEnabled = (boolean)RpcConfigManager.INSTANCE.getDefaultValue(Configs.NETTY_EPOLL_SWITCH) && Epoll.isAvailable();
+            epollEnabled = (boolean) RpcConfigManager.INSTANCE.getDefaultValue(Configs.NETTY_EPOLL_SWITCH) && Epoll.isAvailable();
         } catch (EmptyException e) {
             log.error(e.getMessage());
         }
@@ -55,6 +60,28 @@ public class NettyEventLoopUtil {
     public static EventLoopGroup newEventLoopGroup(int nThreads, ThreadFactory threadFactory) {
         return epollEnabled ? new EpollEventLoopGroup(nThreads, threadFactory)
                 : new NioEventLoopGroup(nThreads, threadFactory);
+    }
+
+    /**
+     * Use {@link EpollMode#LEVEL_TRIGGERED} for server bootstrap if level trigger enabled by system properties,
+     * otherwise use {@link EpollMode#EDGE_TRIGGERED}.
+     *
+     * @param serverBootstrap server bootstrap
+     */
+    public static void enableTriggeredMode(ServerBootstrap serverBootstrap) {
+        if (epollEnabled) {
+            try {
+                if (RpcConfigManager.INSTANCE.getDefaultValue(Configs.NETTY_EPOLL_LT)) {
+                    serverBootstrap.childOption(EpollChannelOption.EPOLL_MODE,
+                            EpollMode.LEVEL_TRIGGERED);
+                } else {
+                    serverBootstrap
+                            .childOption(EpollChannelOption.EPOLL_MODE, EpollMode.EDGE_TRIGGERED);
+                }
+            } catch (EmptyException e) {
+                log.error(e.getMessage());
+            }
+        }
     }
 
 }

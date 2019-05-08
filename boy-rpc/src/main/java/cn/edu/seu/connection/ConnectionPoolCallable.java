@@ -1,7 +1,6 @@
 package cn.edu.seu.connection;
 
 import cn.edu.seu.exception.RemotingException;
-import cn.edu.seu.rpc.ConnectionManager;
 import cn.edu.seu.rpc.EndPoint;
 import lombok.extern.slf4j.Slf4j;
 

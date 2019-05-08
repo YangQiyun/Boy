@@ -1,4 +1,4 @@
-package cn.edu.seu.rpc;
+package cn.edu.seu.rpc.client;
 
 public interface RpcCallback<T> {
 

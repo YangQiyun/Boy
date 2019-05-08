@@ -4,17 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class DefaultConfigManager implements ConfigManager{
+public class DefaultConfigManager implements ConfigManager {
 
-    private Map<String,Object> defaultConfigMap = new HashMap<>();
+    private Map<String, Object> defaultConfigMap = new HashMap<>();
 
-    public DefaultConfigManager(){
+    public DefaultConfigManager() {
         //todo default config
     }
 
     @Override
     public <T> T getDefaultValue(String configType) {
-        return (T)defaultConfigMap.get(configType);
+        return (T) defaultConfigMap.get(configType);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class DefaultConfigManager implements ConfigManager{
 
     @Override
     public <T> void addConfigType(String type, T defaultValue) {
-        defaultConfigMap.put(type,defaultValue);
+        defaultConfigMap.put(type, defaultValue);
     }
 }

@@ -30,6 +30,8 @@ public class RpcConfigManager implements ConfigManager {
         defaultConfigMap.putIfAbsent(Configs.CONN_CREATE_TP_MAX_SIZE, Configs.CONN_CREATE_TP_MAX_SIZE_DEFAULT);
         defaultConfigMap.putIfAbsent(Configs.CONN_CREATE_TP_MIN_SIZE, Configs.CONN_CREATE_TP_MIN_SIZE_DEFAULT);
         defaultConfigMap.putIfAbsent(Configs.CONN_CREATE_TP_QUEUE_SIZE, Configs.CONN_CREATE_TP_QUEUE_SIZE_DEFAULT);
+
+        defaultConfigMap.putIfAbsent(Configs.RPC_SERVER_WORK_POOL, Configs.RPC_SERVER_WORK_POOL_DEFAULT);
     }
 
     public <T> T getDefaultValue(String configType) throws EmptyException {

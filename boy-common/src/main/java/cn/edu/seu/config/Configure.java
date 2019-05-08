@@ -11,6 +11,7 @@ public interface Configure {
 
     /**
      * 获取配置信息
+     *
      * @param configType
      * @param <T>
      * @return
@@ -19,6 +20,7 @@ public interface Configure {
 
     /**
      * 设置配置的值
+     *
      * @param configType
      * @param value
      */

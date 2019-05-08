@@ -1,4 +1,4 @@
-package cn.edu.seu.rpc;
+package cn.edu.seu.rpc.client;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

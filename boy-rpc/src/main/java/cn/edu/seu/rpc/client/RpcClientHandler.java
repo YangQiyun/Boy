@@ -1,4 +1,4 @@
-package cn.edu.seu.rpc;
+package cn.edu.seu.rpc.client;
 
 import cn.edu.seu.protocol.standard.RpcHeader;
 import cn.edu.seu.protocol.standard.RpcMessage;

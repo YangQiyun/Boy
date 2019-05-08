@@ -4,7 +4,7 @@ import com.google.protobuf.MessageLite;
 import lombok.Data;
 
 @Data
-public class RpcMessage<T extends MessageLite>{
+public class RpcMessage<T extends MessageLite> {
 
     private T header;
     private byte[] body;

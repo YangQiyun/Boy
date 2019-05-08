@@ -7,6 +7,7 @@ import cn.edu.seu.config.RpcConfigManager;
 import cn.edu.seu.exception.RemotingException;
 import cn.edu.seu.protocol.RpcRequestDecoder;
 import cn.edu.seu.protocol.RpcRequestEncoder;
+import cn.edu.seu.protocol.RpcResponseDecoder;
 import cn.edu.seu.rpc.EndPoint;
 import cn.edu.seu.util.NettyEventLoopUtil;
 import exception.EmptyException;
@@ -62,7 +63,7 @@ public class AbstractConnectionFactory implements ConnectionFactory {
                     ChannelPipeline pipeline = ch.pipeline();
 
                     pipeline.addLast("encoder", new RpcRequestEncoder())
-                            .addLast("decoder", new RpcRequestDecoder())
+                            .addLast("decoder", new RpcResponseDecoder())
                             .addLast("handler", workHandler);
                 }
             });
@@ -75,7 +76,7 @@ public class AbstractConnectionFactory implements ConnectionFactory {
     public Connection createConnection(EndPoint endPoint) throws RemotingException {
         Channel channel = createChannel(endPoint, normal_time);
         if (channel != null) {
-            return new Connection(channel, endPoint.getIp(), endPoint.getPort(),endPoint.getUniqueKey());
+            return new Connection(channel, endPoint.getIp(), endPoint.getPort(), endPoint.getUniqueKey());
         } else {
             throw new RemotingException("create connection is error! more infos: " + endPoint);
         }
@@ -85,7 +86,7 @@ public class AbstractConnectionFactory implements ConnectionFactory {
     public Connection createConnection(String targetIP, int targetPort, int connectTimeout) throws Exception {
         Channel channel = createChannel(new EndPoint(targetIP, targetPort, -1), connectTimeout);
         if (channel != null) {
-            return new Connection(channel, targetIP, targetPort,"");
+            return new Connection(channel, targetIP, targetPort, "");
         } else {
             throw new RemotingException(String.format("create connection is error ! the ip is %s and port is %s", targetIP, targetPort));
         }

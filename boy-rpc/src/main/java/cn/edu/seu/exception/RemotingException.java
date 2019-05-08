@@ -1,6 +1,6 @@
 package cn.edu.seu.exception;
 
-public class RemotingException extends Exception{
+public class RemotingException extends Exception {
 
     public RemotingException(String message, Throwable cause) {
         super(message, cause);

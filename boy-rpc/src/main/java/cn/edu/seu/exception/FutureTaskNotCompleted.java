@@ -1,6 +1,6 @@
 package cn.edu.seu.exception;
 
-public class FutureTaskNotCompleted extends Exception{
+public class FutureTaskNotCompleted extends Exception {
 
     public FutureTaskNotCompleted(String message) {
         super(message);

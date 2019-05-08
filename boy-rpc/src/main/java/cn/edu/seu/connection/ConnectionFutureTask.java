@@ -21,7 +21,7 @@ public class ConnectionFutureTask extends FutureTask<ConnectionPool> {
 
     @Override
     public void run() {
-        if(!ran.getAndSet(true)) {
+        if (!ran.getAndSet(true)) {
             super.run();
         }
     }
@@ -42,6 +42,7 @@ public class ConnectionFutureTask extends FutureTask<ConnectionPool> {
 
     /**
      * 苞笼所有的exception，返回connection或者为null
+     *
      * @param logger
      * @return
      */

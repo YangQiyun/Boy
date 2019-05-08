@@ -1,9 +1,10 @@
 package cn.edu.seu.protocol.standard;
 
-import cn.edu.seu.rpc.RpcCallback;
-import cn.edu.seu.rpc.RpcClient;
-import cn.edu.seu.rpc.RpcFuture;
+import cn.edu.seu.rpc.client.RpcClient;
+import cn.edu.seu.rpc.client.RpcFuture;
 import cn.edu.seu.rpc.RpcMeta;
+import cn.edu.seu.rpc.server.RpcServer;
+import cn.edu.seu.rpc.server.ServerInfo;
 import com.google.protobuf.MessageLite;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -11,7 +12,6 @@ import io.netty.channel.ChannelHandlerContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -86,6 +86,57 @@ public class StandardProtocol {
             MessageLite responseBody = (MessageLite) decodeMethod.invoke(
                     null, rpcMessage.getBody());
             future.success(responseBody);
+        }
+    }
+
+    public RpcMessage<RpcHeader.ResponseHeader> processRequest(RpcServer rpcServer, RpcMessage<RpcHeader.RequestHeader> request) throws Exception {
+        long startTime = System.currentTimeMillis();
+
+        String serviceName = request.getHeader().getServiceName();
+        String methodName = request.getHeader().getMethodName();
+
+        RpcMessage<RpcHeader.ResponseHeader> response = new RpcMessage<>();
+        RpcHeader.ResponseHeader.Builder responseBuilder = RpcHeader.ResponseHeader.newBuilder()
+                .setRequestId(request.getHeader().getRequestId());
+
+        ServerInfo serverInfo = rpcServer.getServerInfoManager().getServerInfo(serviceName, methodName);
+        if (null == serverInfo) {
+            log.error(String.format("no such serverName %s or methodName %s", serviceName, methodName));
+            RpcHeader.ResponseHeader responseHeader = responseBuilder
+                    .setResCode(RpcHeader.RespCode.RESP_FAIL)
+                    .setResMsg("no such service")
+                    .build();
+            response.setHeader(responseHeader);
+            return response;
+        } else {
+            MessageLite param = (MessageLite) serverInfo.getParseMethod().invoke(null, request.getBody());
+            if (serverInfo.getParameterCount() != 1 ||
+                    serverInfo.getParameterTypes().length != 1 ||
+                    !serverInfo.getParameterTypes()[0].isAssignableFrom(param.getClass())) {
+                log.error(String.format("no match the methodName %s parameterCount %s parameterType[0] %s",
+                        serverInfo.getMethodName(),
+                        serverInfo.getParameterCount(),
+                        serverInfo.getParameterTypes()[0].getName()));
+
+                RpcHeader.ResponseHeader responseHeader = responseBuilder.setResCode(RpcHeader.RespCode.RESP_FAIL)
+                        .setResMsg("no such service")
+                        .build();
+                response.setHeader(responseHeader);
+                return response;
+            }
+
+            MessageLite result = (MessageLite) serverInfo.getMethod().invoke(null, param);
+            RpcHeader.ResponseHeader responseHeader = responseBuilder.setResCode(RpcHeader.RespCode.RESP_SUCCESS)
+                    .setResMsg("")
+                    .build();
+            response.setHeader(responseHeader);
+            response.setBody(result.toByteArray());
+
+            long endTime = System.currentTimeMillis();
+            log.debug("elapseMS={} service={} method={} callId={}",
+                    endTime - startTime, request.getHeader().getServiceName(),
+                    request.getHeader().getMethodName(), request.getHeader().getRequestId());
+            return response;
         }
     }
 
