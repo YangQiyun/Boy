@@ -22,7 +22,10 @@ public class ServerInfo {
 
     private Class<?>[] parameterTypes;
 
-    public ServerInfo(String serverName, String methodName, Method method, int parameterCount, Class<?>[] parameterTypes) {
+    private Object service;
+
+    public ServerInfo(Object service, String serverName, String methodName, Method method, int parameterCount, Class<?>[] parameterTypes) {
+        this.service = service;
         this.serverName = serverName;
         this.methodName = methodName;
         this.method = method;
@@ -32,7 +35,7 @@ public class ServerInfo {
 
     public Method getParseMethod() {
         if (null == parseMethod) {
-            if (parameterTypes[0].getClass().isAssignableFrom(MessageLite.class)) {
+            if (MessageLite.class.isAssignableFrom(parameterTypes[0])) {
                 try {
                     Method parseFrom = parameterTypes[0].getMethod("parseFrom", byte[].class);
                     this.parseMethod = parseFrom;

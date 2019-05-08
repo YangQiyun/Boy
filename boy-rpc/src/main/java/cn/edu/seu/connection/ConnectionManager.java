@@ -1,6 +1,5 @@
 package cn.edu.seu.connection;
 
-import cn.edu.seu.connection.Connection;
 import cn.edu.seu.exception.RemotingException;
 import cn.edu.seu.rpc.EndPoint;
 

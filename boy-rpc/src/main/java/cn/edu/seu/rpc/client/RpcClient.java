@@ -2,9 +2,7 @@ package cn.edu.seu.rpc.client;
 
 import cn.edu.seu.common.NamedThreadFactory;
 import cn.edu.seu.config.AbstractConfigurableInstance;
-import cn.edu.seu.config.ConfigManager;
 import cn.edu.seu.config.Configs;
-import cn.edu.seu.config.RpcConfigManager;
 import cn.edu.seu.connection.Connection;
 import cn.edu.seu.connection.DefaultConnectionManager;
 import cn.edu.seu.exception.RemotingException;
@@ -28,8 +26,6 @@ public class RpcClient extends AbstractConfigurableInstance {
     private ConcurrentMap<Long, RpcFuture> pendingRPC;
     private List<EndPoint> endPoints;
     private ScheduledExecutorService timeoutTimer;
-    private ConfigManager configManager = RpcConfigManager.INSTANCE;
-
     private Random random = new Random();
 
     public RpcClient(List<EndPoint> endPoints) {
@@ -40,10 +36,10 @@ public class RpcClient extends AbstractConfigurableInstance {
 
     private RpcClient() {
         super();
-        configManager.addConfigType(Configs.RPC_CLIENT, true);
-        configManager.addConfigType(Configs.RPC_SERVER, Configs.RPC_SERVER_DEFAULT);
-        configManager.addConfigType(Configs.READ_TIMEOUT_MILLIS, Configs.READ_TIMEOUT_MILLIS_DEFAULT);
-        setConfigManager(RpcConfigManager.INSTANCE);
+        setConfig(Configs.RPC_CLIENT, true);
+        setConfig(Configs.RPC_SERVER, Configs.RPC_SERVER_DEFAULT);
+        setConfig(Configs.READ_TIMEOUT_MILLIS, Configs.READ_TIMEOUT_MILLIS_DEFAULT);
+        setConfig(Configs.RETRY_TIME, Configs.RETRY_TIME_DEFAULT);
     }
 
     public void init() {
@@ -72,11 +68,12 @@ public class RpcClient extends AbstractConfigurableInstance {
                     if (rpcFuture != null) {
                         log.debug("request timeout, requestId={}", requestId);
                     }
-                }, configManager.getDefaultValue(Configs.READ_TIMEOUT_MILLIS), TimeUnit.MILLISECONDS);
+                }, getConfig(Configs.READ_TIMEOUT_MILLIS), TimeUnit.MILLISECONDS);
 
                 RpcFuture future = new RpcFuture(requestId, responseClass, callback, scheduledFuture, fullRequest);
                 addFuture(requestId, future);
                 connection.getChannel().writeAndFlush(fullRequest);
+                return future;
             } catch (EmptyException e) {
                 log.error(e.getMessage());
             }

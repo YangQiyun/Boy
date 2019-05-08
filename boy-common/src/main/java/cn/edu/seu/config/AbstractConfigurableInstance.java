@@ -10,7 +10,7 @@ public class AbstractConfigurableInstance implements Configure {
     private ConfigManager configManager;
 
     public AbstractConfigurableInstance() {
-        setConfigManager(new DefaultConfigManager());
+        //setConfigManager(new DefaultConfigManager());
     }
 
     public AbstractConfigurableInstance(ConfigManager configManager) {
@@ -28,9 +28,9 @@ public class AbstractConfigurableInstance implements Configure {
         return this.globalSwitch;
     }
 
-    public <T> T getConfig(String configType) throws Exception {
+    public <T> T getConfig(String configType) throws EmptyException {
         if (null == configStorage.get(configType)) {
-            throw new Exception("the config of " + configType + " is not init!");
+            throw new EmptyException("the config of " + configType + " is not init!");
         }
         return (T) configStorage.get(configType);
     }

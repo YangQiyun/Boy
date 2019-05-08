@@ -40,6 +40,8 @@ public class RpcFuture<T> implements Future<Object> {
         this.rpcCallback = rpcCallback;
         this.scheduledFuture = scheduledFuture;
         this.fullRequest = fullRequest;
+
+        latch = new CountDownLatch(1);
     }
 
     @Override

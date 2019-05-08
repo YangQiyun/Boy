@@ -55,7 +55,7 @@ public class Configs {
      * Netty epoll switch
      */
     public static final String NETTY_EPOLL_SWITCH = "boy.netty.epoll.switch";
-    public static final boolean NETTY_EPOLL_SWITCH_DEFAULT = true;
+    public static final boolean NETTY_EPOLL_SWITCH_DEFAULT = false;
 
     /**
      * Netty epoll level trigger enabled
@@ -94,7 +94,7 @@ public class Configs {
 
     // ~~~ configs for rpc
     public static final String RETRY_TIME = "rpc_retry_time";
-    public static int RETRY_TIME_DEFAULT = 3;
+    public static int RETRY_TIME_DEFAULT = 1;
 
     public static final String READ_TIMEOUT_MILLIS = "readTimeoutMillis";
     public static long READ_TIMEOUT_MILLIS_DEFAULT = 1000;

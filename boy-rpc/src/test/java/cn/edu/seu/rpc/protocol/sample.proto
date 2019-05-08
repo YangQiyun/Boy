@@ -1,2 +1,18 @@
-syntax="proto3";
+syntax = "proto3";
+
+package test;
+
+option java_package = "cn.edu.seu.rpc.protocol";
+option java_outer_classname = "Sample";
+
+message sayHello {
+    int32 id = 1;
+    string message = 2;
+}
+
+message sayHi {
+    int32 id = 1;
+    string message = 2;
+}
+
 

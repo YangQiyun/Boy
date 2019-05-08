@@ -6,10 +6,10 @@ import cn.edu.seu.config.Configs;
 import cn.edu.seu.config.RpcConfigManager;
 import cn.edu.seu.protocol.RpcRequestDecoder;
 import cn.edu.seu.protocol.RpcResponseEncoder;
+import cn.edu.seu.rpc.EndPoint;
 import cn.edu.seu.rpc.RpcMeta;
 import cn.edu.seu.util.NettyEventLoopUtil;
 import exception.EmptyException;
-import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelInitializer;
@@ -36,32 +36,46 @@ public class RpcServer {
 
     private ServerInfoManager serverInfoManager = ServerInfoManager.INSTANCE;
 
+    private EndPoint serverPoint;
+
+    public RpcServer(EndPoint endPoint) {
+        this.serverPoint = endPoint;
+        init();
+    }
+
     public void init() {
 
         try {
             bootstrap = new ServerBootstrap();
 
+            boosGroup = NettyEventLoopUtil.newEventLoopGroup(Runtime.getRuntime().availableProcessors() + 1,
+                    new NamedThreadFactory("netty-boos-group", true));
             workGroup = NettyEventLoopUtil.newEventLoopGroup(configManager.getDefaultValue(Configs.RPC_SERVER_WORK_POOL),
-                    new NamedThreadFactory("netty_work_loop", true));
+                    new NamedThreadFactory("netty_server_work_loop", true));
 
-            bootstrap.group(workGroup)
+            bootstrap
                     .channel(NettyEventLoopUtil.getServerSocketChannelClass())
-                    .option(ChannelOption.TCP_NODELAY, configManager.getDefaultValue(Configs.TCP_NODELAY))
                     .option(ChannelOption.SO_BACKLOG, configManager.getDefaultValue(Configs.TCP_SO_BACKLOG))
-                    .option(ChannelOption.SO_KEEPALIVE, configManager.getDefaultValue(Configs.TCP_SO_KEEPALIVE));
+                    .childOption(ChannelOption.TCP_NODELAY, configManager.getDefaultValue(Configs.TCP_NODELAY))
+                    .childOption(ChannelOption.SO_KEEPALIVE, configManager.getDefaultValue(Configs.TCP_SO_KEEPALIVE))
+                    .childOption(ChannelOption.SO_REUSEADDR, configManager.getDefaultValue(Configs.TCP_SO_REUSEADDR));
+
+            bootstrap.childOption(ChannelOption.SO_LINGER, 5);
+            bootstrap.childOption(ChannelOption.SO_SNDBUF, 1024 * 64);
+            bootstrap.childOption(ChannelOption.SO_RCVBUF, 1024 * 64);
 
             NettyEventLoopUtil.enableTriggeredMode(bootstrap);
 
             ChannelHandler workHandler = new RpcServerHandler(this);
-            bootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
+            bootstrap.group(boosGroup, workGroup).childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
                     ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new IdleStateHandler(1, 1, 1, null))
+                    pipeline.addLast(new IdleStateHandler(60, 60, 0))
                             .addLast(new RPCServerChannelIdleHandler())
-                            .addLast(new RpcRequestDecoder())
-                            .addLast(workHandler)
-                            .addLast(new RpcResponseEncoder());
+                            .addLast("encode", new RpcResponseEncoder())
+                            .addLast("decoder", new RpcRequestDecoder())
+                            .addLast("work", workHandler);
                 }
             });
 
@@ -71,15 +85,22 @@ public class RpcServer {
 
     }
 
+    public void start() {
+        try {
+            bootstrap.bind(serverPoint.getPort()).sync();
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
+    }
 
-    public void registServer(Class service) {
-        Class[] interfaces = service.getInterfaces();
+    public void registServer(Object service) {
+        Class[] interfaces = service.getClass().getInterfaces();
         if (interfaces.length < 1) {
-            log.warn("this service %s has not interface here", service.getName());
+            log.warn("this service %s has not interface here", service.getClass().getName());
             return;
         }
 
-        Class serviceInterface = service.getInterfaces()[0];
+        Class serviceInterface = service.getClass().getInterfaces()[0];
         for (Method method : serviceInterface.getDeclaredMethods()) {
             String servicName;
             String methodName;
@@ -96,7 +117,7 @@ public class RpcServer {
                 }
             }
 
-            ServerInfo serverInfo = new ServerInfo(servicName, methodName, method, method.getParameterCount(), method.getParameterTypes());
+            ServerInfo serverInfo = new ServerInfo(service, servicName, methodName, method, method.getParameterCount(), method.getParameterTypes());
             serverInfoManager.addServerInfo(servicName, methodName, serverInfo);
             log.info("register service, serviceName={}, methodName={}",
                     serverInfo.getServerName(), serverInfo.getMethodName());

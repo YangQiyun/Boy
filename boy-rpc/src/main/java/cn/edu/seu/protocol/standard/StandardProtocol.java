@@ -1,8 +1,8 @@
 package cn.edu.seu.protocol.standard;
 
+import cn.edu.seu.rpc.RpcMeta;
 import cn.edu.seu.rpc.client.RpcClient;
 import cn.edu.seu.rpc.client.RpcFuture;
-import cn.edu.seu.rpc.RpcMeta;
 import cn.edu.seu.rpc.server.RpcServer;
 import cn.edu.seu.rpc.server.ServerInfo;
 import com.google.protobuf.MessageLite;
@@ -42,22 +42,23 @@ public class StandardProtocol {
 
     public RpcMessage<RpcHeader.RequestHeader> newRequest(Long requestId, Method method, Object request) {
         RpcMessage<RpcHeader.RequestHeader> rpcMessage = new RpcMessage<>();
-        RpcHeader.RequestHeader.Builder builder = RpcHeader.RequestHeader.newBuilder();
-        builder.setRequestId(requestId);
+        RpcHeader.RequestHeader.Builder headerBuilder = RpcHeader.RequestHeader.newBuilder();
+        headerBuilder.setRequestId(requestId);
 
         RpcMeta rpcMeta = method.getAnnotation(RpcMeta.class);
         if (rpcMeta != null && StringUtils.isNoneBlank(rpcMeta.serviceName())) {
-            builder.setServiceName(rpcMeta.serviceName());
+            headerBuilder.setServiceName(rpcMeta.serviceName());
         } else {
-            builder.setServiceName(method.getDeclaringClass().getName());
+            headerBuilder.setServiceName(method.getDeclaringClass().getName());
         }
 
         if (rpcMeta != null && StringUtils.isNoneBlank(rpcMeta.methodName())) {
-            builder.setMethodName(rpcMeta.methodName());
+            headerBuilder.setMethodName(rpcMeta.methodName());
         } else {
-            builder.setMethodName(method.getName());
+            headerBuilder.setMethodName(method.getName());
         }
 
+        rpcMessage.setHeader(headerBuilder.build());
         if (!MessageLite.class.isAssignableFrom(request.getClass())) {
             throw new IllegalArgumentException("request should be protobuf type");
         }
@@ -109,7 +110,7 @@ public class StandardProtocol {
             response.setHeader(responseHeader);
             return response;
         } else {
-            MessageLite param = (MessageLite) serverInfo.getParseMethod().invoke(null, request.getBody());
+            MessageLite param = (MessageLite) serverInfo.getParseMethod().invoke(serverInfo.getService(), request.getBody());
             if (serverInfo.getParameterCount() != 1 ||
                     serverInfo.getParameterTypes().length != 1 ||
                     !serverInfo.getParameterTypes()[0].isAssignableFrom(param.getClass())) {
@@ -125,7 +126,7 @@ public class StandardProtocol {
                 return response;
             }
 
-            MessageLite result = (MessageLite) serverInfo.getMethod().invoke(null, param);
+            MessageLite result = (MessageLite) serverInfo.getMethod().invoke(serverInfo.getService(), param);
             RpcHeader.ResponseHeader responseHeader = responseBuilder.setResCode(RpcHeader.RespCode.RESP_SUCCESS)
                     .setResMsg("")
                     .build();
@@ -133,7 +134,7 @@ public class StandardProtocol {
             response.setBody(result.toByteArray());
 
             long endTime = System.currentTimeMillis();
-            log.debug("elapseMS={} service={} method={} callId={}",
+            log.info("elapseMS={} service={} method={} callId={}",
                     endTime - startTime, request.getHeader().getServiceName(),
                     request.getHeader().getMethodName(), request.getHeader().getRequestId());
             return response;
@@ -173,7 +174,8 @@ public class StandardProtocol {
     }
 
     private void encode(ChannelHandlerContext ctx, Object msg, List<Object> out, boolean isRequest) throws Exception {
-        RpcMessage rpcMessage;
+
+        RpcMessage rpcMessage = null;
         if (isRequest) {
             rpcMessage = (RpcMessage<RpcHeader.RequestHeader>) msg;
         } else {
@@ -189,6 +191,5 @@ public class StandardProtocol {
         byteBuf.writeInt(bodyLength);
 
         out.add(Unpooled.wrappedBuffer(byteBuf.array(), headerBytes, rpcMessage.getBody()));
-
     }
 }

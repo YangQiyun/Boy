@@ -206,7 +206,8 @@ public class DefaultConnectionManager implements ConnectionManager, ConnectionSe
 
     private Connection doCreate(EndPoint endPoint, ConnectionPoolCallable callable, boolean openDegradedMode) throws InterruptedException, RemotingException {
 
-        ReentrantLock lock = createLosks.putIfAbsent(endPoint.getUniqueKey(), new ReentrantLock());
+        createLosks.putIfAbsent(endPoint.getUniqueKey(), new ReentrantLock());
+        ReentrantLock lock = createLosks.get(endPoint.getUniqueKey());
         try {
             lock.lock();
 

@@ -1,5 +1,7 @@
 package cn.edu.seu.config;
 
+import exception.EmptyException;
+
 public interface Configure {
 
     /**
@@ -16,7 +18,7 @@ public interface Configure {
      * @param <T>
      * @return
      */
-    <T> T getConfig(String configType) throws Exception;
+    <T> T getConfig(String configType) throws EmptyException;
 
     /**
      * 设置配置的值

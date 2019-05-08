@@ -3,6 +3,7 @@ package cn.edu.seu.connection;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Data
@@ -19,7 +20,7 @@ public class ConnectionPool {
     private ConnectionSelectStrategy strategy;
 
     public Connection getOne() {
-        return null;
+        return conns.get(new Random().nextInt(conns.size()));
     }
 
     public List<Connection> getAll() {

@@ -33,8 +33,8 @@ public class RpcProxy implements MethodInterceptor {
 
     public Object intercept(Object target, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
         // 通过校验首个参数判断是否是proto类型来进行是否代理的操作
-        if (method.getParameterTypes().length < 1 || MessageLite.class.isAssignableFrom(method.getParameterTypes()[0])) {
-            log.info("%s no need to proxy", method.getName());
+        if (method.getParameterTypes().length < 1 || !MessageLite.class.isAssignableFrom(method.getParameterTypes()[0])) {
+            log.info(String.format("%s no need to proxy", method.getName()));
             return methodProxy.invokeSuper(target, args);
         }
 
