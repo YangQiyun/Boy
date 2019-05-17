@@ -10,6 +10,7 @@ import cn.edu.seu.rpc.EndPoint;
 import exception.EmptyException;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,6 +29,14 @@ public class RpcClient extends AbstractConfigurableInstance {
     private ScheduledExecutorService timeoutTimer;
     private Random random = new Random();
 
+    public RpcClient(EndPoint endPoint){
+        this();
+        ArrayList<EndPoint> endPoints = new ArrayList<>(1);
+        endPoints.add(endPoint);
+        this.endPoints = endPoints;
+        init();
+    }
+
     public RpcClient(List<EndPoint> endPoints) {
         this();
         this.endPoints = endPoints;
@@ -42,7 +51,7 @@ public class RpcClient extends AbstractConfigurableInstance {
         setConfig(Configs.RETRY_TIME, Configs.RETRY_TIME_DEFAULT);
     }
 
-    public void init() {
+    private void init() {
         connectionManager = new DefaultConnectionManager(new RpcClientHandler(this));
         connectionManager.init();
         pendingRPC = new ConcurrentHashMap<>();

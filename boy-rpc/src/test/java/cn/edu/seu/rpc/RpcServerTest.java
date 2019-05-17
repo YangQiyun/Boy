@@ -5,7 +5,7 @@ import cn.edu.seu.rpc.server.RpcServer;
 public class RpcServerTest {
 
     public static void main(String[] args) {
-        RpcServer server = new RpcServer(new EndPoint("127.0.0.1", 8989, 1));
+        RpcServer server = new RpcServer(new EndPoint("127.0.0.1", 8787, 1));
         server.registServer(new SampleServiceImpl());
         server.start();
 
@@ -14,6 +14,7 @@ public class RpcServerTest {
             try {
                 RpcServerTest.class.wait();
             } catch (Throwable e) {
+
             }
         }
     }

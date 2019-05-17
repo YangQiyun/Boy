@@ -3,11 +3,13 @@ package cn.edu.seu.rpc.client;
 import cn.edu.seu.protocol.standard.RpcHeader;
 import cn.edu.seu.protocol.standard.RpcMessage;
 import cn.edu.seu.protocol.standard.StandardProtocol;
+import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@ChannelHandler.Sharable
 public class RpcClientHandler extends ChannelInboundHandlerAdapter {
 
     private RpcClient rpcClient;
