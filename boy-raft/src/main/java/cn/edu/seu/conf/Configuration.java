@@ -1,5 +1,7 @@
 package cn.edu.seu.conf;
 
+import cn.edu.seu.rpc.EndPoint;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,10 @@ public class Configuration implements Comparable<Configuration> {
 
     public void addServerNode(ServerNode serverNode) {
         serverNodes.add(serverNode);
+    }
+
+    public void addServerNode(EndPoint endPoint, int serverId) {
+        serverNodes.add(new ServerNode(endPoint, serverId));
     }
 
     public ServerNode getServerNode(int serverId) {

@@ -17,7 +17,7 @@ public class RaftConsensusServiceImpl implements RaftConsensusService{
 
     @Override
     public RaftMessage.VoteResponse requestVote(RaftMessage.VoteRequest request) {
-        return null;
+        return raftNode.handleRequestVoteRequest(request);
     }
 
     @Override

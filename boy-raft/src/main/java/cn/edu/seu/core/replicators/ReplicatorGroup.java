@@ -22,4 +22,8 @@ public class ReplicatorGroup {
         replicators.forEachValue(1L, replicator -> replicator.preVote(term, lastLogIndex, lastLogTerm));
     }
 
+    public void sendRequestVote(long term, long lastLogIndex, long lastLogTerm) {
+        replicators.forEachValue(1L, replicator -> replicator.reqeustVote(term, lastLogIndex, lastLogTerm));
+    }
+
 }

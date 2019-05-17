@@ -26,7 +26,7 @@ public class Replicator {
     }
 
     public void preVote(long term, long lastLogIndex, long lastLogTerm) {
-        log.info("this peer {} begins to preVote!", peer);
+        log.info("ball ball preVote from peer {} !", peer);
         executor.submit(() -> {
             RaftMessage.VoteRequest.Builder builder = RaftMessage.VoteRequest.newBuilder();
             builder.setServerId(peer.getServerNode().getServerId())
@@ -38,5 +38,17 @@ public class Replicator {
         });
     }
 
+    public void reqeustVote(long term, long lastLogIndex, long lastLogTerm) {
+        log.info("ball ball request vote from peer {}!", peer);
+        executor.submit(() -> {
+            RaftMessage.VoteRequest.Builder builder = RaftMessage.VoteRequest.newBuilder();
+            builder.setServerId(peer.getServerNode().getServerId())
+                    .setTerm(term)
+                    .setLastLogIndex(lastLogIndex)
+                    .setLastLogTerm(lastLogTerm);
+            RaftMessage.VoteRequest request = builder.build();
+            peer.getRaftConsensusServiceAsync().requestVote(request, raftNode.new requestVoteCallback(this.peer,request));
+        });
+    }
 
 }

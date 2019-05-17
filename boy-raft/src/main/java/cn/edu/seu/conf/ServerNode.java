@@ -18,4 +18,9 @@ public class ServerNode {
      * 服务节点的标号，在一个raftGroup中同一个endPoint只能有一个serverId与之对应
      */
     private int serverId;
+
+    public ServerNode(EndPoint endPoint, int serverId) {
+        this.endPoint = endPoint;
+        this.serverId = serverId;
+    }
 }

@@ -27,6 +27,7 @@ public class RpcClient extends AbstractConfigurableInstance {
     private ConcurrentMap<Long, RpcFuture> pendingRPC;
     private List<EndPoint> endPoints;
     private ScheduledExecutorService timeoutTimer;
+    private ScheduledExecutorService checkTimer;
     private Random random = new Random();
 
     public RpcClient(EndPoint endPoint){
@@ -65,6 +66,8 @@ public class RpcClient extends AbstractConfigurableInstance {
         }
 
         timeoutTimer = Executors.newScheduledThreadPool(1, new NamedThreadFactory("sendRequestTimer", true));
+        checkTimer = Executors.newScheduledThreadPool(1,new NamedThreadFactory("checkConnection",true));
+        checkConnection();
     }
 
     public RpcFuture sendRequest(long requestId, Object fullRequest, Class<?> responseClass, RpcCallback callback) {
@@ -88,6 +91,23 @@ public class RpcClient extends AbstractConfigurableInstance {
             }
         }
         return null;
+    }
+
+    private void checkConnection(){
+        checkTimer.schedule(new Runnable() {
+            @Override
+            public void run() {
+                for(EndPoint endPoint:endPoints){
+                    try {
+                        if (connectionManager.create(endPoint) != null){
+                            continue;
+                        }
+                    } catch (RemotingException e) {
+                        log.error(e.getMessage());
+                    }
+                }
+            }
+        },1,TimeUnit.SECONDS);
     }
 
     public void addFuture(long requestId, RpcFuture future) {
