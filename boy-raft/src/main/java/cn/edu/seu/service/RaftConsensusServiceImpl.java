@@ -22,6 +22,6 @@ public class RaftConsensusServiceImpl implements RaftConsensusService{
 
     @Override
     public RaftMessage.AppendEntriesResponse appendEntries(RaftMessage.AppendEntriesRequest request) {
-        return null;
+        return raftNode.handleAppendEntries(request);
     }
 }

@@ -19,11 +19,21 @@ public class ReplicatorGroup {
     }
 
     public void sendPreVote(long term, long lastLogIndex, long lastLogTerm) {
-        replicators.forEachValue(1L, replicator -> replicator.preVote(term, lastLogIndex, lastLogTerm));
+        replicators.forEachValue(1L, replicator -> {
+            if(replicator.getPeer().getServerNode().getServerId() != raftNode.serverId){
+                replicator.preVote(term, lastLogIndex, lastLogTerm);
+
+            }
+        });
     }
 
     public void sendRequestVote(long term, long lastLogIndex, long lastLogTerm) {
-        replicators.forEachValue(1L, replicator -> replicator.reqeustVote(term, lastLogIndex, lastLogTerm));
+        replicators.forEachValue(1L, replicator -> {
+            if(replicator.getPeer().getServerNode().getServerId() != raftNode.serverId){
+                replicator.reqeustVote(term, lastLogIndex, lastLogTerm);
+
+            }
+        });
     }
 
 }

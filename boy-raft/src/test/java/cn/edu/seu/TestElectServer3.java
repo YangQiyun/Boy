@@ -13,11 +13,11 @@ public class TestElectServer3 {
         nodeOptions.getConfiguration().addServerNode(endPoint1,1);
         nodeOptions.getConfiguration().addServerNode(endPoint2,2);
         nodeOptions.getConfiguration().addServerNode(endPoint3,3);
-        nodeOptions.setServerId(2);
+        nodeOptions.setServerId(3);
 
-        RpcServer rpcServer = new RpcServer(endPoint2);
+        RpcServer rpcServer = new RpcServer(endPoint3);
 
-        RaftGroupService raftGroupService = new RaftGroupService("raft", nodeOptions, 2, rpcServer);
+        RaftGroupService raftGroupService = new RaftGroupService("raft", nodeOptions, 3, rpcServer);
         raftGroupService.start();
 
         synchronized (TestElect.class) {

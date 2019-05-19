@@ -18,4 +18,8 @@ public class RaftOptions {
      * 内部disruptor的任务数量池
      */
     private int disruptorBufferSize = 16384;
+
+    private int heartbeatPeriodMilliseconds = 400;
+
+    private int appendLogPeriodMilliseconds = 50;
 }

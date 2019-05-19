@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.seu.dao.LogDao">
+    <select id="getLogByIndex" parameterType="long" resultType="cn.edu.seu.dao.LogDao">
+        select * from `server1` where logindex = #{logindex}
+    </select>
+
+    <select id="getLogByTable" parameterType="java.util.Map" resultType="cn.edu.seu.dao.LogDao" statementType="STATEMENT">
+        select * from ${tableName} where logindex = ${logindex}
+    </select>
+
+
+
+    <insert
+            id="insertLog"
+            parameterType="cn.edu.seu.dao.LogDao"
+            useGeneratedKeys="true">
+        insert into server1(logindex,data) values (#{logindex},#{data},#{term})
+    </insert>
+
+    <insert
+            id="insertByTable"
+            parameterType="cn.edu.seu.dao.LogDaoWithTable">
+        insert into ${tableName}(logindex,data,term) values (#{logindex},#{data},#{term})
+    </insert>
+</mapper>

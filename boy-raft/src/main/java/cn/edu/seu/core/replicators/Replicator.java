@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class Replicator {
@@ -15,14 +17,23 @@ public class Replicator {
     private Peer peer;
 
     private ExecutorService executor;
+    private ScheduledExecutorService scheduledExecutorService;
 
     private RaftNode raftNode;
 
 
     public Replicator(Peer peer,RaftNode raftNode) {
-        executor = Executors.newFixedThreadPool(3, new NamedThreadFactory("boy-replicator-serverID-" + peer.getServerNode().getServerId(), true));
+        NamedThreadFactory namedThreadFactory = new NamedThreadFactory("boy-replicator-serverID-" + peer.getServerNode().getServerId(), true);
+        executor = Executors.newFixedThreadPool(3,namedThreadFactory);
         this.raftNode = raftNode;
         this.peer = peer;
+        scheduledExecutorService = Executors.newScheduledThreadPool(1, namedThreadFactory);
+        scheduledExecutorService.schedule(new Runnable() {
+            @Override
+            public void run() {
+                appendEntitiesStart();
+            }
+        },raftNode.getRaftOptions().getAppendLogPeriodMilliseconds(), TimeUnit.MILLISECONDS);
     }
 
     public void preVote(long term, long lastLogIndex, long lastLogTerm) {
@@ -51,4 +62,19 @@ public class Replicator {
         });
     }
 
+    private void appendEntitiesStart(){
+        long nextToSend = peer.getNextIndex();
+        if(raftNode.getLogManager().getLastLogIndex() >= nextToSend){
+            // 重复发送处理？
+            RaftMessage.LogEntry logEntry = raftNode.getLogManager().getLogEntry(nextToSend);
+            if(logEntry==null){
+                log.error("send the logEntry in replicator of peer {} but fail find the index of log {}",peer,nextToSend);
+            }
+            raftNode.appendEntity(peer,logEntry);
+        }
+    }
+
+    public Peer getPeer() {
+        return peer;
+    }
 }
