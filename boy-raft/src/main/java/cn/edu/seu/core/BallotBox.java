@@ -103,6 +103,7 @@ public class BallotBox {
                 pendingMetaQueue.pollFirst();
                 gap--;
             }
+            this.lastCommittedIndex = lastCommittedIndex;
         } finally {
             stampedLock.unlockWrite(stamped);
         }

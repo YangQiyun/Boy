@@ -94,20 +94,21 @@ public class RpcClient extends AbstractConfigurableInstance {
     }
 
     private void checkConnection(){
-        checkTimer.schedule(new Runnable() {
+        checkTimer.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
                 for(EndPoint endPoint:endPoints){
                     try {
-                        if (connectionManager.create(endPoint) != null){
+
+                        if (connectionManager.getAndCreateIfAbsent(endPoint) != null){
                             continue;
                         }
-                    } catch (RemotingException e) {
+                    } catch (Exception e) {
                         log.error(e.getMessage());
                     }
                 }
             }
-        },1,TimeUnit.SECONDS);
+        },0,100,TimeUnit.MILLISECONDS);
     }
 
     public void addFuture(long requestId, RpcFuture future) {

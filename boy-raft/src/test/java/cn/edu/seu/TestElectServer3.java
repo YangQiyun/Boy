@@ -10,9 +10,11 @@ public class TestElectServer3 {
         EndPoint endPoint1 = new EndPoint("127.0.0.1",8901,2);
         EndPoint endPoint2 = new EndPoint("127.0.0.1",8902,2);
         EndPoint endPoint3 = new EndPoint("127.0.0.1",8903,2);
+        EndPoint endPoint4 = new EndPoint("127.0.0.1",8904,2);
         nodeOptions.getConfiguration().addServerNode(endPoint1,1);
         nodeOptions.getConfiguration().addServerNode(endPoint2,2);
         nodeOptions.getConfiguration().addServerNode(endPoint3,3);
+        nodeOptions.getConfiguration().addServerNode(endPoint4,4);
         nodeOptions.setServerId(3);
 
         RpcServer rpcServer = new RpcServer(endPoint3);

@@ -4,10 +4,7 @@ import cn.edu.seu.conf.NodeOptions;
 import cn.edu.seu.rpc.EndPoint;
 import cn.edu.seu.rpc.server.RpcServer;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
-public class TestElect {
+public class TestElectServer4 {
 
     public static void main(String[] args){
         NodeOptions nodeOptions = new NodeOptions();
@@ -19,11 +16,11 @@ public class TestElect {
         nodeOptions.getConfiguration().addServerNode(endPoint2,2);
         nodeOptions.getConfiguration().addServerNode(endPoint3,3);
         nodeOptions.getConfiguration().addServerNode(endPoint4,4);
-        nodeOptions.setServerId(1);
+        nodeOptions.setServerId(4);
 
-        RpcServer rpcServer = new RpcServer(endPoint1);
+        RpcServer rpcServer = new RpcServer(endPoint4);
 
-        RaftGroupService raftGroupService = new RaftGroupService("raft", nodeOptions, 1, rpcServer);
+        RaftGroupService raftGroupService = new RaftGroupService("raft", nodeOptions, 4, rpcServer);
         raftGroupService.start();
 
         synchronized (TestElect.class) {

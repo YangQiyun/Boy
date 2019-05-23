@@ -134,7 +134,7 @@ public class StandardProtocol {
             response.setBody(result.toByteArray());
 
             long endTime = System.currentTimeMillis();
-            log.info("elapseMS={} service={} method={} callId={}",
+            log.debug("elapseMS={} service={} method={} callId={}",
                     endTime - startTime, request.getHeader().getServiceName(),
                     request.getHeader().getMethodName(), request.getHeader().getRequestId());
             return response;

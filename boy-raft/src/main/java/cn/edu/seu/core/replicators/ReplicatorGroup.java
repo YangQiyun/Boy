@@ -31,7 +31,6 @@ public class ReplicatorGroup {
         replicators.forEachValue(1L, replicator -> {
             if(replicator.getPeer().getServerNode().getServerId() != raftNode.serverId){
                 replicator.reqeustVote(term, lastLogIndex, lastLogTerm);
-
             }
         });
     }

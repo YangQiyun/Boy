@@ -32,6 +32,7 @@ public class LogStorageUtils {
         int result = 0;
         try {
             result = session.insert("insertByTable", logDaoWithTable);
+            log.debug("插入的结果是 result {}",result);
         }catch (Exception e){
             log.error("sql error insert by log {} result is {} error message is {}", logDaoWithTable, result,e.getMessage());
             return false;

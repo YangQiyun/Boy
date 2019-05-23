@@ -29,7 +29,8 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
     private ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
     private ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
     private Condition preLogCommit = writeLock.newCondition();
-    private volatile long lastLogIndex;
+    private volatile long lastLogIndex = 0;
+    private long pendIndex = 0;
     private volatile long term = 0;
 
     private Disruptor<LogEntryWithClosure> disruptor;
@@ -62,9 +63,9 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
     @Override
     public long getTerm(long index) {
         RaftMessage.LogEntry logEntry = findLogEntryByIndex(index);
-        if(logEntry!=null){
+        if (logEntry != null) {
             return logEntry.getIndex();
-        }else {
+        } else {
             return -1;
         }
     }
@@ -89,6 +90,7 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
     public void appendEntries(RaftMessage.LogEntry entry, LogClosure closure) {
         closure.firstLogIndex = entry.getIndex();
         disruptor.publishEvent((entryWithClosure, sequence) -> {
+            log.debug("logManager publish event {}", entry);
             entryWithClosure.setClosure(closure);
             entryWithClosure.setLogEntry(entry);
         });
@@ -101,13 +103,14 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
 
     /**
      * 该节点发生变动时触发，和node同步,但是咩用
+     *
      * @param term
      */
-    public void setTerm(long term){
+    public void setTerm(long term) {
         try {
             writeLock.lock();
             this.term = term;
-        }finally {
+        } finally {
             writeLock.unlock();
         }
     }
@@ -135,16 +138,21 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
             if (appendToStorage(logEntryWithClosure.logEntry)) {
                 status = Status.NORMAL;
             }
+            log.debug("logManager 的插入结果是{}", status);
             try {
                 writeLock.lock();
                 long waitForIndex = logEntryWithClosure.logEntry.getIndex();
                 while (lastLogIndex != waitForIndex - 1) {
                     preLogCommit.await();
-                    if (lastLogIndex == waitForIndex - 1) {
-                        lastLogIndex = logEntryWithClosure.logEntry.getIndex();
-                        term = logEntryWithClosure.logEntry.getTerm();
-                        preLogCommit.signalAll();
-                    }
+                }
+                if (lastLogIndex == waitForIndex - 1) {
+                    lastLogIndex = logEntryWithClosure.logEntry.getIndex();
+                    term = logEntryWithClosure.logEntry.getTerm();
+                    log.debug("更新lastLogIndex {} 和 term {}", lastLogIndex, term);
+                    preLogCommit.signalAll();
+                } else {
+                    log.error("LogEntryWithClosureHandler could not happen, now lastLogIndex is" +
+                            "{} and waitForIndex is {}", lastLogIndex, waitForIndex);
                 }
             } finally {
                 writeLock.unlock();
@@ -181,6 +189,13 @@ public class LogManagerImpl implements LogManager, Lifecycle<LogOptions> {
         return logEntry;
     }
 
-
+    public long addOneAndGet() {
+        try {
+            writeLock.lock();
+            return ++pendIndex;
+        } finally {
+            writeLock.unlock();
+        }
+    }
 
 }

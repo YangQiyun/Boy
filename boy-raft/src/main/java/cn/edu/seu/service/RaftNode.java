@@ -28,6 +28,7 @@ import com.lmax.disruptor.dsl.Disruptor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.Validate;
 
+import java.nio.ByteBuffer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executors;
@@ -101,7 +102,9 @@ public class RaftNode implements Lifecycle<NodeOptions> {
             Peer peer = new Peer(serverNode);
             peerMap.put(serverNode.getServerId(), peer);
             // 初始化所有节点连接
-            replicatorGroup.addReplicator(peer);
+            if (peer.getServerNode().getServerId() != serverId) {
+                replicatorGroup.addReplicator(peer);
+            }
 
         }
         this.logManager = new LogManagerImpl(peerMap.get(serverId));
@@ -130,9 +133,38 @@ public class RaftNode implements Lifecycle<NodeOptions> {
                 resetElectionTimer();
             }
         }, 15, TimeUnit.SECONDS);
+
+        //resetHeartbeatTimer();
         // 开始默认的选举操作
         //resetElectionTimer();
+//        Executors.newSingleThreadExecutor().submit(() -> {
+//            try {
+//                Thread.sleep(1000 * 15);
+//                int testSize = 20;
+//                while (true) {
+//                    if (testSize == 0) {
+//                        break;
+//                    }
+//                    testSize--;
+//                    if (raftNodeState != RaftNodeState.STATE_LEADER) {
+//                        break;
+//                    }
+//                    log.info("开始发送测试日志了");
+//                    applyTask(new Task(ByteBuffer.allocate(1), new test()));
+//                }
+//            } catch (Exception e) {
+//                System.out.println(e.getMessage());
+//            }
+//        });
         return true;
+    }
+
+    class test implements RaftFuture {
+
+        @Override
+        public void run(Status status) {
+            System.out.println(status.isOk());
+        }
     }
 
     @Override
@@ -148,9 +180,12 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         RaftMessage.LogEntry.Builder logEntryBuilder = RaftMessage.LogEntry.newBuilder().setData(ByteString.copyFrom(task.getData()));
         logEntryBuilder.setTerm(this.currentTerm);
         logEntryBuilder.setType(RaftMessage.EntryType.ENTRY_TYPE_DATA);
+        logEntryBuilder.setIndex(((LogManagerImpl) logManager).addOneAndGet());
         applyQueue.publishEvent((event, sequence) -> {
+            RaftMessage.LogEntry logEntry = logEntryBuilder.build();
+            log.debug("当前publishEvent {}", logEntry);
             event.done = task.getDone();
-            event.entry = logEntryBuilder.build();
+            event.entry = logEntry;
         });
 
     }
@@ -189,6 +224,7 @@ public class RaftNode implements Lifecycle<NodeOptions> {
             this.ballotBox.appendTask(logEntryAndFutrure.done, peerMap);
             // 分发到其他节点append,由replicator自己处理
             // 本地append
+            log.info("调用本地的append");
             this.logManager.appendEntries(logEntryAndFutrure.entry, new LeaderAppendLogClosure(logEntryAndFutrure.entry));
         } finally {
             this.writeLock.unlock();
@@ -204,6 +240,7 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         @Override
         public void run(final Status status) {
             if (status != null && status.isOk()) {
+                log.info("leader 触发日志插入回调");
                 RaftNode.this.ballotBox.commitAt(this.firstLogIndex, this.entry.getIndex(), peerMap.get(serverId));
             } else {
                 log.error("leader append normal log err the status is {}", status);
@@ -226,18 +263,15 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         @Override
         public void run(Status status) {
             try {
+                log.debug("follower 触发日志插入的回调");
                 if (status != null && status.isOk()) {
-                    try {
-                        readLock.lock();
-                        if (currentTerm != response.getTerm()) {
-                            response.setResCode(RaftMessage.ResCode.RES_CODE_FAIL).setTerm(currentTerm);
-                            return;
-                        }
-                    } finally {
-                        readLock.unlock();
+                    if (currentTerm != response.getTerm()) {
+                        response.setResCode(RaftMessage.ResCode.RES_CODE_FAIL).setTerm(currentTerm);
+                        return;
                     }
                     response.setResCode(RaftMessage.ResCode.RES_CODE_SUCCESS).setTerm(currentTerm);
-                    ballotBox.followCommit(entry.getIndex());
+                    // 应该等到leader来commit
+                    //ballotBox.followCommit(entry.getIndex());
                 } else {
                     log.error("leader append normal log err the status is {}", status);
                 }
@@ -254,6 +288,7 @@ public class RaftNode implements Lifecycle<NodeOptions> {
             return;
         }
         if (currentTerm < newTerm) {
+            log.info("now is step down from term {} to new term {}", currentTerm, newTerm);
             ((LogManagerImpl) logManager).setTerm(currentTerm);
             currentTerm = newTerm;
             leaderId = 0;
@@ -295,13 +330,17 @@ public class RaftNode implements Lifecycle<NodeOptions> {
     private void startNewHeartbeat() {
         log.debug("start new heartbeat");
         for (final Peer peer : peerMap.values()) {
-            if(peer.getServerNode().getServerId() == serverId){
+            if (peer.getServerNode().getServerId() == serverId) {
                 continue;
             }
             scheduledExecutorService.submit(new Runnable() {
                 @Override
                 public void run() {
-                    appendEntity(peer,null);
+                    try {
+                        appendEntity(peer, null);
+                    } catch (Exception e) {
+                        log.error(e.getMessage());
+                    }
                 }
             });
         }
@@ -581,12 +620,12 @@ public class RaftNode implements Lifecycle<NodeOptions> {
      */
     public void updateCommit(long commitIndex) {
 
-        if (raftNodeState != RaftNodeState.STATE_LEADER) {
-            log.error("current raftNode state is not leader but still upateCommit");
-            return;
-        }
+//        if (raftNodeState != RaftNodeState.STATE_LEADER) {
+//            log.error("current raftNode state is not leader but still upateCommit");
+//            return;
+//        }
         //  todo commit state
-
+        log.info("updateCommit{}", commitIndex);
         this.commitIndex = commitIndex;
     }
 
@@ -640,29 +679,35 @@ public class RaftNode implements Lifecycle<NodeOptions> {
                 return responseBuilder.build();
             }
 
+            resetElectionTimer();
             responseBuilder.setResCode(RaftMessage.ResCode.RES_CODE_SUCCESS);
 
-            if(request.getEntries(0)!=null) {
+            if (request.getEntries(0).getIndex() != -2) {
+                log.debug("收到正常的日志了");
                 FollowerAppendLogClosure followerAppendLogClosure = new FollowerAppendLogClosure(request.getEntries(0), responseBuilder);
                 logManager.appendEntries(request.getEntries(0), followerAppendLogClosure);
                 // 保证log顺序append，log设计需改进
                 while (!followerAppendLogClosure.done) {
-                    Thread.yield();
+                    try {
+                        Thread.sleep(5);
+                    } catch (InterruptedException e) {
+                        log.error(e.getMessage());
+                    }
                 }
             }
-            log.info("AppendEntries request from server {} " +
-                            "in term {} (my term is {}), entryCount={} resCode={}",
-                    request.getServerId(), request.getTerm(), currentTerm,
-                    request.getEntriesCount(), responseBuilder.getResCode());
+//            log.info("AppendEntries request from server {} " +
+//                            "in term {} (my term is {}), entryCount={} resCode={}",
+//                    request.getServerId(), request.getTerm(), currentTerm,
+//                    request.getEntriesCount(), responseBuilder.getResCode());
 
-            if(commitIndex < request.getCommitIndex()){
+            if (commitIndex < request.getCommitIndex()) {
                 this.commitIndex = request.getCommitIndex();
             }
 
             //  followCommit
-            if(commitIndex > appliedIndex){
-                long endIndex = Math.min(commitIndex,logManager.getLastLogIndex());
-                updateCommit(endIndex);
+            if (commitIndex > appliedIndex) {
+                long endIndex = Math.min(commitIndex, logManager.getLastLogIndex());
+                ballotBox.followCommit(endIndex);
             }
             return responseBuilder.build();
         } finally {
@@ -670,14 +715,14 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         }
     }
 
-    public void appendEntity(Peer peer, RaftMessage.LogEntry logEntry) {
+    public boolean appendEntity(Peer peer, RaftMessage.LogEntry logEntry) {
         RaftMessage.AppendEntriesRequest.Builder requestBuilder = RaftMessage.AppendEntriesRequest.newBuilder();
 
         long prevLogIndex = peer.getNextIndex() - 1;
         long prevLogTerm = logManager.getTerm(prevLogIndex);
 
         // 判断心跳包
-        int numEnty = logEntry == null ? 0 : 1;
+        int numEnty = (logEntry == null ? 0 : 1);
 
         writeLock.lock();
         try {
@@ -685,7 +730,11 @@ public class RaftNode implements Lifecycle<NodeOptions> {
             requestBuilder.setTerm(currentTerm);
             requestBuilder.setPrevLogTerm(prevLogTerm);
             requestBuilder.setPrevLogIndex(prevLogIndex);
-            requestBuilder.addEntries(logEntry);
+            if (logEntry == null) {
+                requestBuilder.addEntries(RaftMessage.LogEntry.newBuilder().setIndex(-2));
+            } else {
+                requestBuilder.addEntries(logEntry);
+            }
             // 半数落后的法定节点，可以提交commit，因为leader已经commit了
             requestBuilder.setCommitIndex(Math.min(commitIndex, prevLogIndex + numEnty));
         } finally {
@@ -699,24 +748,26 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         try {
             if (response == null) {
                 log.warn("appendEntries with peer {} failed", peer);
-                return;
+                return false;
             }
-            log.info("AppendEntries response[{}] from server {} " +
-                            "in term {} (my term is {})",
-                    response.getResCode(), peer.getServerNode().getServerId(),
-                    response.getTerm(), currentTerm);
+//            log.info("AppendEntries response[{}] from server {} " +
+//                            "in term {} (my term is {})",
+//                    response.getResCode(), peer.getServerNode().getServerId(),
+//                    response.getTerm(), currentTerm);
 
             if (response.getTerm() > currentTerm) {
                 stepDown(response.getTerm());
             } else {
                 // 成功append
                 if (response.getResCode() == RaftMessage.ResCode.RES_CODE_SUCCESS) {
+                    log.info("发送的prevLogIndex是{} 当前的numEnty {}", prevLogIndex, numEnty);
                     peer.setMatchIndex(prevLogIndex + numEnty);
-                    peer.setNextIndex(peer.getMatchIndex() + numEnty);
+                    peer.setNextIndex(peer.getMatchIndex() + 1);
                     // commit过了也无所谓，因为会过滤
                     // 但是不能快，通过replicator保证
-                    if(0 != numEnty) {
+                    if (0 != numEnty) {
                         this.ballotBox.commitAt(logEntry.getIndex(), logEntry.getIndex(), peer);
+                        return true;
                     }
                 } else {
                     peer.setNextIndex(response.getLastLogIndex() + 1);
@@ -725,14 +776,19 @@ public class RaftNode implements Lifecycle<NodeOptions> {
         } finally {
             writeLock.unlock();
         }
+        return false;
     }
 
-    public LogManager getLogManager(){
+    public LogManager getLogManager() {
         return this.logManager;
     }
 
-    public RaftOptions getRaftOptions(){
+    public RaftOptions getRaftOptions() {
         return this.raftOptions;
+    }
+
+    public RaftNodeState getRaftNodeState() {
+        return this.raftNodeState;
     }
 
 }

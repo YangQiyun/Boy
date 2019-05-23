@@ -11,4 +11,9 @@ public class Task {
     private ByteBuffer data;
 
     private RaftFuture done;
+
+    public Task(ByteBuffer data, RaftFuture done) {
+        this.data = data;
+        this.done = done;
+    }
 }

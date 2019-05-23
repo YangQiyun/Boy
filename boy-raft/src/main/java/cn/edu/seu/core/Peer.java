@@ -16,12 +16,14 @@ public class Peer {
     private RaftConsensusServiceAsync raftConsensusServiceAsync;
 
     // 需要发送给follower的下一个日志条目的索引值，只对leader有效
-    private long nextIndex;
+    private volatile long nextIndex;
     // 已复制日志的最高索引值
-    private long matchIndex;
+    private volatile long matchIndex;
 
     public Peer(ServerNode serverNode) {
         this.serverNode = serverNode;
+        nextIndex = 1;
+        matchIndex = 0;
         this.init();
     }
 
